@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <color name="list_background">#FFF</color>
+    <color name="list_divider">#CCC</color>
+
+    <color name="selected">#61B4CF</color>
+    <color name="checked">#DD61B4CF</color>
+    <color name="text_light">#999999</color>
+    <color name="white">#FFFFFF</color>
+
+    <drawable name="translucent_white">#DDFFFFFF</drawable>
+    <color name="translucent_white">#DDFFFFFF</color>
+
+    <color name="scheme_blue_darkest">#FF024E68</color>
+    <color name="scheme_blue_dark">#FF024E68</color>
+    <color name="scheme_blue_moderate">#FF06799F</color>
+    <color name="scheme_blue_light">#FF3AAACF</color>
+    <color name="scheme_blue_lightest">#FF61B4CF</color>
+
+</resources>
