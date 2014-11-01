@@ -10,8 +10,8 @@ import android.support.v4.app.ActionBarDrawerToggle;
 import android.support.v4.widget.DrawerLayout;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.inputmethod.InputMethodManager;
-import android.widget.*;
+
+import android.widget.*;import android.view.inputmethod.InputMethodManager;
 import android.util.Log;
 import com.mtu.ito.fotaito.R;
 
