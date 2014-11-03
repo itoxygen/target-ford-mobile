@@ -11,7 +11,8 @@ import android.support.v4.widget.DrawerLayout;
 import android.view.MenuItem;
 import android.view.View;
 
-import android.widget.*;import android.view.inputmethod.InputMethodManager;
+import android.widget.*;
+import android.view.inputmethod.InputMethodManager;
 import android.util.Log;
 import com.mtu.ito.fotaito.R;
 
@@ -97,7 +98,7 @@ public class DrawerActivity extends Activity {
         return super.onOptionsItemSelected(item);
     }
 
-    public void openFragment(final Class<? extends Fragment> clazz, final Bundle args) {
+    public void openFragment(final Class<? extends Fragment> clazz, final Bundle args) throws InstantiationException {
         closeKeyboard();
 
         final Fragment fragment = Fragment.instantiate(this, clazz.getName(), args);
