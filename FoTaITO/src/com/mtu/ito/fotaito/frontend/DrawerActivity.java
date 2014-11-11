@@ -24,13 +24,13 @@ import java.util.ArrayList;
 public class DrawerActivity extends Activity {
     private static final String TAG = DrawerActivity.class.getSimpleName();
 
-    private ArrayAdapter<String> _drawerListAdapter;
+    private ArrayAdapter<DrawerItem> _drawerListAdapter;
 
     private DrawerLayout _drawerLayout;
 
     private ListView _drawerList;
 
-    private ArrayList<String> _tabList;
+    private ArrayList<DrawerItem> _itemList;
 
     private ActionBarDrawerToggle _drawerToggle;
 
@@ -41,10 +41,10 @@ public class DrawerActivity extends Activity {
 
         final ActionBar actionBar = getActionBar();
 
-        _tabList = new ArrayList<String>();
+        _itemList = new ArrayList<DrawerItem>();
 
-        _drawerListAdapter = new ArrayAdapter<String>(this,
-                R.layout.drawer_list_item, R.id.drawer_item, _tabList);
+        _drawerListAdapter = new ArrayAdapter<DrawerItem>(this,
+                R.layout.drawer_list_item, R.id.drawer_item, _itemList);
 
         _drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
 
@@ -56,7 +56,9 @@ public class DrawerActivity extends Activity {
             public void onItemClick(final AdapterView<?> parent,
                                     final View view, final int position, final long id) {
                 Log.d(TAG, "Navigation drawer item clicked");
-                openTab(_tabList.get(position));
+                _itemList.get(position).onClicked();
+                _drawerLayout.closeDrawer(_drawerList);
+                //openTab(_itemList.get(position));
             }
         });
 
@@ -131,12 +133,20 @@ public class DrawerActivity extends Activity {
         }
     }
 
-    protected void addTab(final String tab) {
-        _tabList.add(tab);
+    protected void addDrawerItem(final DrawerItem item) {
+        _itemList.add(item);
     }
 
-    protected void openTab(final String tab) {
-        getActionBar().setTitle(tab);
-        _drawerLayout.closeDrawer(_drawerList);
+    //protected void openDrawerItem(final DrawerItem item) {
+    //    getActionBar().setTitle(item.toString());
+    //    _drawerLayout.closeDrawer(_drawerList);
+    //}
+
+    protected void setDrawerTitle(final String title) {
+        // TODO
+    }
+
+    public interface DrawerItem {
+        public void onClicked();
     }
 }
