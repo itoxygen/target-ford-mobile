@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+    <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Run Service Once"
+            android:id="@+id/button_runservice" android:layout_alignParentTop="true" android:layout_alignParentLeft="true"
+            android:layout_marginLeft="42dp"/>
+    <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Start Service Timer"
+            android:id="@+id/button_startservice" android:layout_below="@+id/button_runservice" android:layout_alignLeft="@+id/button_runservice"/>
+    <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Stop Service Time"
+            android:id="@+id/button_stopservice" android:layout_below="@+id/button_startservice" android:layout_alignLeft="@+id/button_startservice"/>
+</RelativeLayout> 
