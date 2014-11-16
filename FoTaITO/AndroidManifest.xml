@@ -19,6 +19,7 @@
             </intent-filter>
         </activity>
 
+        <service android:name="com.openxc.VehicleManager"/>
         <activity android:name=".frontend.MainActivity"/>
         <activity android:name=".frontend.ScenarioActivity"/>
         <activity android:name=".frontend.SandboxActivity"/>
