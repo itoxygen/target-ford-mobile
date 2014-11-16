@@ -21,7 +21,9 @@ import java.util.concurrent.ExecutionException;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 /**
- * Created by Kyle on 11/2/2014.
+ * Database manager to connect to azure back end. Stores received offers/coupons for later use.
+ *
+ * @author Kyle Oswald
  */
 public class AzureDatabaseManager implements DatabaseManager {
     private static final String TAG = AzureDatabaseManager.class.getSimpleName();
@@ -112,6 +114,11 @@ public class AzureDatabaseManager implements DatabaseManager {
         return _client.getContext();
     }
 
+    /**
+     * Sets the context used by the Azure MobileServiceClient.
+     *
+     * @param context Android application context
+     */
     @Override
     public void setContext(final Context context) {
         _client.setContext(context);

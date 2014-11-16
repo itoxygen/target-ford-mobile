@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/../AzureMobileService/AzureMobileService.iml" filepath="$PROJECT_DIR$/../AzureMobileService/AzureMobileService.iml" />
       <module fileurl="file://$PROJECT_DIR$/FoTaITO.iml" filepath="$PROJECT_DIR$/FoTaITO.iml" />
       <module fileurl="file://$PROJECT_DIR$/../appcompat/android-support-v7-appcompat.iml" filepath="$PROJECT_DIR$/../appcompat/android-support-v7-appcompat.iml" />
     </modules>

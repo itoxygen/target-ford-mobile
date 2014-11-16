@@ -7,7 +7,12 @@ import android.util.Log;
 import com.mtu.ito.fotaito.data.AzureDatabaseManager;
 
 /**
- * Created by Kyle on 11/2/2014.
+ * Application entry point. Handles user authentication and ensures that there
+ * is database access and nothing is corrupted. All extras attached to the intent
+ * which starts this activity are forwarded to {@link MainActivity} verbatim.
+ * Additional functionality may be added later.
+ *
+ * @author Kyle Oswald
  */
 public class StarterActivity extends Activity {
     private static final String TAG = StarterActivity.class.getSimpleName();
@@ -17,7 +22,8 @@ public class StarterActivity extends Activity {
     @Override
     public void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        _db = AzureDatabaseManager.getInstance(this);
+        //_db = AzureDatabaseManager.getInstance(this);
+        _db = AzureDatabaseManager.getInstance(getApplicationContext()); // Experimental
     }
 
     @Override
@@ -62,9 +68,11 @@ public class StarterActivity extends Activity {
         setIntent(intent);
     }
 
-    // Called before onResume() on MainActivity exit. If MainActivity didn't respond
-    // with a RESULT_LOGOUT result code then exit, else continue to onResume() to
-    // perform login.
+    /*
+     * Called before onResume() upon MainActivity exit. If MainActivity didn't respond
+     * with a RESULT_LOGOUT result code then exit, else continue to onResume() to
+     * perform login.
+     */
     @Override
     protected void onActivityResult(final int requestCode, final int resultCode, final Intent data) {
         Log.d(TAG, "Received result code " + resultCode + " from MainActivity.");
@@ -72,10 +80,14 @@ public class StarterActivity extends Activity {
         if (resultCode != MainActivity.RESULT_LOGOUT) { // Exit the app
             finish();
         } else {
-            //_db.logout();
+            //_db.logout(); Moved to MainActivity
         }
     }
 
+    /**
+     * Kick off MainActivity, onActivityResult() is called with the response
+     * code when it finishes.
+     */
     private void startMainActivity() {
         final Intent intent = new Intent(this, MainActivity.class);
         intent.putExtras(getIntent()); // Forward extras to MainActivity
