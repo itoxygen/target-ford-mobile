@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+    <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true" android:layout_alignParentLeft="true">
+        <Button
+                android:layout_width="280dp"
+                android:layout_height="wrap_content"
+                android:text="Sign in with Google"
+                android:id="@+id/button_google_sign_in" android:layout_gravity="center_horizontal"
+                android:background="@drawable/google_button"
+                android:textAppearance="@android:style/TextAppearance.Large" android:textColor="@android:color/white"
+                android:textStyle="bold" android:paddingRight="5dp"
+                />
+        <Button
+                android:layout_width="280dp"
+                android:layout_height="wrap_content"
+                android:text="Sign in with Facebook"
+                android:id="@+id/button_facebook_sign_in" android:layout_gravity="center_horizontal"
+                android:background="@drawable/facebook_button"
+                android:textAppearance="@android:style/TextAppearance.Large" android:textColor="@android:color/white"
+                android:textStyle="bold" android:layout_marginTop="15dp"/>
+        <Button
+                android:layout_width="280dp"
+                android:layout_height="wrap_content"
+                android:text="Sign in with Twitter"
+                android:id="@+id/button_twitter_sign_in" android:layout_gravity="center_horizontal"
+                android:layout_marginTop="15dp" android:textAppearance="@android:style/TextAppearance.Large"
+                android:textColor="@android:color/white" android:textStyle="bold"
+                android:background="@drawable/twitter_button"/>
+    </LinearLayout>
+</RelativeLayout>

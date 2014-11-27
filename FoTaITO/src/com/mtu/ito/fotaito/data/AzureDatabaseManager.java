@@ -59,6 +59,8 @@ public class AzureDatabaseManager implements DatabaseManager {
 
     private final AtomicBoolean _isAuthenticating;
 
+    private MobileServiceAuthenticationProvider _provider;
+
     private AzureDatabaseManager(final Context context) {
         try {
             _client = new MobileServiceClient(APP_URL, APP_KEY, context)
@@ -69,6 +71,7 @@ public class AzureDatabaseManager implements DatabaseManager {
 
         _isLoggedIn = false;
         _isAuthenticating = new AtomicBoolean(false);
+        _provider = MobileServiceAuthenticationProvider.Google;
     }
 
     @Override
@@ -83,6 +86,10 @@ public class AzureDatabaseManager implements DatabaseManager {
 
     public void login(final LoginCallback callback) {
         authenticate(false, callback);
+    }
+
+    public void setIdentityProvider(final MobileServiceAuthenticationProvider provider) {
+        _provider = provider;
     }
 
     @Override
@@ -142,7 +149,7 @@ public class AzureDatabaseManager implements DatabaseManager {
             if (refreshCache || !loadUserTokenCache()) {
                 // New login using the provider and update the token cache.
                 final ListenableFuture<MobileServiceUser> loginFuture =
-                        _client.login(MobileServiceAuthenticationProvider.Google);
+                        _client.login(_provider);
                 Futures.addCallback(loginFuture, new FutureCallback<MobileServiceUser>() {
                     @Override
                     public void onFailure(final Throwable e) {
@@ -189,6 +196,8 @@ public class AzureDatabaseManager implements DatabaseManager {
                     callback.onSuccess(AzureDatabaseManager.this);
                 }
             }
+        } else if (callback != null) {
+            callback.onFailure(this);
         }
     }
 
@@ -212,25 +221,29 @@ public class AzureDatabaseManager implements DatabaseManager {
         editor.commit();
     }
 
-    private boolean loadUserTokenCache() {
-        final SharedPreferences prefs = _client.getContext()
-                .getSharedPreferences(TOKEN_PREFERENCES, Context.MODE_PRIVATE);
+    public boolean loadUserTokenCache() {
+        synchronized (AUTHENTICATION_LOCK) {
+            final SharedPreferences prefs = _client.getContext()
+                    .getSharedPreferences(TOKEN_PREFERENCES, Context.MODE_PRIVATE);
 
-        final String userId = prefs.getString(KEY_USER_ID, VALUE_UNDEFINED);
-        if (userId.equals(VALUE_UNDEFINED)) {
-            return false;
+            final String userId = prefs.getString(KEY_USER_ID, VALUE_UNDEFINED);
+            if (userId.equals(VALUE_UNDEFINED)) {
+                return false;
+            }
+
+            final String token = prefs.getString(KEY_ACCESS_TOKEN, VALUE_UNDEFINED);
+            if (token.equals(VALUE_UNDEFINED)) {
+                return false;
+            }
+
+            final MobileServiceUser user = new MobileServiceUser(userId);
+            user.setAuthenticationToken(token);
+            _client.setCurrentUser(user);
+
+            _isLoggedIn = true;
+
+            return true;
         }
-
-        final String token = prefs.getString(KEY_ACCESS_TOKEN, VALUE_UNDEFINED);
-        if (token.equals(VALUE_UNDEFINED)) {
-            return false;
-        }
-
-        final MobileServiceUser user = new MobileServiceUser(userId);
-        user.setAuthenticationToken(token);
-        _client.setCurrentUser(user);
-
-        return true;
     }
 
     /**
