@@ -13,7 +13,7 @@ import com.microsoft.windowsazure.mobileservices.http.NextServiceFilterCallback;
 import com.microsoft.windowsazure.mobileservices.http.ServiceFilter;
 import com.microsoft.windowsazure.mobileservices.http.ServiceFilterRequest;
 import com.microsoft.windowsazure.mobileservices.http.ServiceFilterResponse;
-import com.mtu.ito.fotaito.data.pojos.Offer;
+import com.mtu.ito.fotaito.data.pojos.WeeklyAdOffer;
 
 import java.net.MalformedURLException;
 import java.util.List;
@@ -75,12 +75,12 @@ public class AzureDatabaseManager implements DatabaseManager {
     }
 
     @Override
-    public void putOffers(final List<Offer> offerList) {
+    public void putOffers(final List<WeeklyAdOffer> offerList) {
 
     }
 
     @Override
-    public List<Offer> getOffers() {
+    public List<WeeklyAdOffer> getOffers() {
         return null;
     }
 

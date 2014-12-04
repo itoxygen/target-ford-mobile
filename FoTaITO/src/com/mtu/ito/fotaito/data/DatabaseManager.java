@@ -1,7 +1,7 @@
 package com.mtu.ito.fotaito.data;
 
 import android.content.Context;
-import com.mtu.ito.fotaito.data.pojos.Offer;
+import com.mtu.ito.fotaito.data.pojos.WeeklyAdOffer;
 
 import java.util.List;
 
@@ -9,9 +9,9 @@ import java.util.List;
  * Created by Kyle on 11/2/2014.
  */
 public interface DatabaseManager {
-    public void putOffers(List<Offer> offerList);
+    public void putOffers(List<WeeklyAdOffer> offerList);
 
-    public List<Offer> getOffers();
+    public List<WeeklyAdOffer> getOffers();
 
     public boolean login();
 
