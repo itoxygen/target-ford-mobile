@@ -13,10 +13,13 @@ import com.microsoft.windowsazure.mobileservices.http.NextServiceFilterCallback;
 import com.microsoft.windowsazure.mobileservices.http.ServiceFilter;
 import com.microsoft.windowsazure.mobileservices.http.ServiceFilterRequest;
 import com.microsoft.windowsazure.mobileservices.http.ServiceFilterResponse;
+import com.microsoft.windowsazure.mobileservices.table.MobileServiceTable;
+import com.mtu.ito.fotaito.data.pojos.WeeklyAdListing;
 import com.mtu.ito.fotaito.data.pojos.WeeklyAdOffer;
 
 import java.net.MalformedURLException;
 import java.util.List;
+import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.atomic.AtomicBoolean;
 
@@ -25,7 +28,7 @@ import java.util.concurrent.atomic.AtomicBoolean;
  *
  * @author Kyle Oswald
  */
-public class AzureDatabaseManager implements DatabaseManager {
+public class AzureDatabaseManager {
     private static final String TAG = AzureDatabaseManager.class.getSimpleName();
 
     private static AzureDatabaseManager _instance;
@@ -65,6 +68,8 @@ public class AzureDatabaseManager implements DatabaseManager {
         try {
             _client = new MobileServiceClient(APP_URL, APP_KEY, context)
                     .withFilter(new RefreshTokenCacheFilter());
+            _client.getGsonBuilder()
+                   .registerTypeAdapter(WeeklyAdListing.class, null);
         } catch (MalformedURLException e) {
             throw new RuntimeException(e);
         }
@@ -74,14 +79,44 @@ public class AzureDatabaseManager implements DatabaseManager {
         _provider = MobileServiceAuthenticationProvider.Google;
     }
 
-    @Override
-    public void putOffers(final List<WeeklyAdOffer> offerList) {
+    public void putOffers(final List<WeeklyAdListing> offerList) {
+        final MobileServiceTable<WeeklyAdListing> table = _client.getTable("", WeeklyAdListing.class);
 
+        final CountDownLatch latch = new CountDownLatch(offerList.size());
+
+        for (WeeklyAdListing listing : offerList) {
+            Futures.addCallback(table.insert(listing), new FutureCallback<WeeklyAdListing>() {
+                @Override
+                public void onSuccess(WeeklyAdListing weeklyAdListing) {
+                    latch.countDown();
+                }
+
+                @Override
+                public void onFailure(Throwable throwable) {
+                    latch.countDown();
+                }
+            });
+        }
+
+        try {
+            latch.await();
+        } catch (InterruptedException e) {
+            Thread.currentThread().interrupt();
+        }
     }
 
-    @Override
-    public List<WeeklyAdOffer> getOffers() {
+    public List<WeeklyAdListing> getOffers() throws MobileServiceException {
+        final MobileServiceTable<WeeklyAdListing> table = _client.getTable("", WeeklyAdListing.class);
+        table.execute();
         return null;
+    }
+
+    public void removeOffers(final List<WeeklyAdListing> offerList) {
+        final MobileServiceTable<WeeklyAdListing> table = _client.getTable("", WeeklyAdListing.class);
+
+        for (WeeklyAdListing listing : offerList) {
+            table.delete(listing);
+        }
     }
 
     public void login(final LoginCallback callback) {
@@ -90,11 +125,6 @@ public class AzureDatabaseManager implements DatabaseManager {
 
     public void setIdentityProvider(final MobileServiceAuthenticationProvider provider) {
         _provider = provider;
-    }
-
-    @Override
-    public boolean login() {
-        return false;
     }
 
     public boolean isLoggedIn() {
@@ -107,7 +137,6 @@ public class AzureDatabaseManager implements DatabaseManager {
      * Logs out the user <b>AND</b> clears the token cache that subsequent
      * logins will be forced to re-authenticate through an identity provider.
      */
-    @Override
     public void logout() {
         synchronized (AUTHENTICATION_LOCK) {
             _client.logout();
@@ -116,7 +145,6 @@ public class AzureDatabaseManager implements DatabaseManager {
         }
     }
 
-    @Override
     public Context getContext() {
         return _client.getContext();
     }
@@ -126,7 +154,6 @@ public class AzureDatabaseManager implements DatabaseManager {
      *
      * @param context Android application context
      */
-    @Override
     public void setContext(final Context context) {
         _client.setContext(context);
     }

@@ -1,12 +1,13 @@
 package com.mtu.ito.fotaito.data.pojos;
 
-import java.util.List;
+import java.io.Serializable;
+import java.util.ArrayList;
 
 /**
  * Created by Kyle on 12/2/2014.
  */
-public class TargetStore {
-    private List<String> _capabilities;
+public class TargetStore implements Serializable {
+    private ArrayList<String> _capabilities;
 
     private String _storeId;
 
@@ -15,7 +16,7 @@ public class TargetStore {
     private Address _address;
 
     public TargetStore(final String storeId, final String storeName,
-            final Address address, final List<String> capabilities) {
+            final Address address, final ArrayList<String> capabilities) {
         _storeId = storeId;
         _storeName = storeName;
         _address = address;

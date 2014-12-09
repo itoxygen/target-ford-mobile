@@ -12,6 +12,10 @@ import android.view.ViewGroup;
 public class ProductFragment extends Fragment {
     private static final String TAG = ProductFragment.class.getSimpleName();
 
+    public static final String KEY_STORE = TAG + ".KEY_STORE";
+    public static final String KEY_LISTING = TAG + ".KEY_TAG";
+    public static final String KEY_MESSAGE = TAG + ".KEY_MSG";
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         return null;
