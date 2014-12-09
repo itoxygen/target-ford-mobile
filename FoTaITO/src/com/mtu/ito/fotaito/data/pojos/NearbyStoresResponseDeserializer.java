@@ -13,12 +13,15 @@ public class NearbyStoresResponseDeserializer implements JsonDeserializer<List> 
     @Override
     public List deserialize(final JsonElement jsonElement, final Type type,
             final JsonDeserializationContext jsonDeserializationContext) throws JsonParseException {
-        final JsonArray locationsArray = jsonElement.getAsJsonObject().getAsJsonArray("Location");
+        final JsonArray locationsArray = jsonElement.getAsJsonObject()
+                .getAsJsonObject("Locations").getAsJsonArray("Location");
 
         final ArrayList<TargetStore> list = new ArrayList<TargetStore>();
-        for (JsonElement elem : locationsArray) {
-            final TargetStore store = jsonDeserializationContext.deserialize(elem, TargetStore.class);
-            list.add(store);
+        if (locationsArray != null) {
+            for (JsonElement elem : locationsArray) {
+                final TargetStore store = jsonDeserializationContext.deserialize(elem, TargetStore.class);
+                list.add(store);
+            }
         }
 
         return list;

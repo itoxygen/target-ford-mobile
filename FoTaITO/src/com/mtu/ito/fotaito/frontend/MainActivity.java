@@ -3,12 +3,20 @@ package com.mtu.ito.fotaito.frontend;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.content.Intent;
+import android.nfc.Tag;
 import android.os.Bundle;
 import android.util.Log;
 import com.mtu.ito.fotaito.R;
 import com.mtu.ito.fotaito.data.AzureDatabaseManager;
+import com.mtu.ito.fotaito.data.TargetConnection;
+import com.mtu.ito.fotaito.data.pojos.TargetStore;
+import com.mtu.ito.fotaito.data.pojos.WeeklyAdListing;
+import com.mtu.ito.fotaito.scenarios.EnergyDrinkScenario;
+import com.mtu.ito.fotaito.service.CarState;
 
+import java.io.IOException;
 import java.util.HashMap;
+import java.util.List;
 
 /**
  * Created by Kyle on 11/2/2014.
@@ -127,8 +135,11 @@ public class MainActivity extends DrawerActivity {
 
         // Get the intent which started the activity
         final Intent intent = this.getIntent();
-
         final Bundle args = intent.getExtras();
+        handleNewIntent(args);
+    }
+
+    private void handleNewIntent(final Bundle args) {
         final String fragment = args == null ? null : args.getString(KEY_FRAGMENT);
         final String tab = args == null ? null : args.getString(KEY_TAB);
 
@@ -147,7 +158,46 @@ public class MainActivity extends DrawerActivity {
             openTab(tab);
         } else if (_tab == null) { // Open default tab on creation
             openTab(TAB_OFFERS);
+            testShit();
         }
+    }
+
+    private void testShit() {
+        Log.d(TAG, "Testing shit");
+
+        final TargetConnection cnn = new TargetConnection();
+        final EnergyDrinkScenario scenario = new EnergyDrinkScenario();
+        final CarState state = new CarState(44.9833d, -93.2667d); // Geo coordinates of Minneapolis
+
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    final List<TargetStore> stores = cnn.queryNearbyStores(state.getLatitude(), state.getLongitude(), 50);
+
+                    Log.d(TAG, "Found " + stores.size() + " stores in range");
+
+                    final Intent intent = scenario.satisfied(state, cnn, stores, MainActivity.this);
+
+                    if (intent != null) {
+                        runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                handleNewIntent(intent.getExtras());
+                            }
+                        });
+
+                        //final Bundle args = intent.getBundleExtra(KEY_ARGS);
+                        //final WeeklyAdListing listing = (WeeklyAdListing) args.getSerializable(ProductFragment.KEY_LISTING);
+                        //Log.d(TAG, "Found listing: " + listing.getTitle());
+                    } else {
+                        Log.d(TAG, "Intent was null");
+                    }
+                } catch (IOException e) {
+                    Log.e(TAG, "Error while testing scenario.", e);
+                }
+            }
+        }).start();
     }
 
     @Override

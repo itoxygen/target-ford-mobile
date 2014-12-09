@@ -23,6 +23,8 @@ public class EnergyDrinkScenario implements Scenario {
     public Intent satisfied(final CarState state, final TargetConnection cnn,
             final List<TargetStore> stores, final Context context) throws IOException {
         for (TargetStore store : stores) {
+            Log.d(TAG, "Querying store: " + store.getStoreSlug());
+
             final List<WeeklyAdListing> listings = cnn.queryWeeklyAd(store, "energy drink");
 
             if (!listings.isEmpty()) {

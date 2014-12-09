@@ -19,7 +19,7 @@ public class TargetStoreDeserializer implements JsonDeserializer<TargetStore> {
         final String storeName = obj.get("Name").getAsString();
         final Address address = jsonDeserializationContext.deserialize(obj.get("Address"), Address.class);
 
-        final List<String> capabilities = new ArrayList<String>();
+        final ArrayList<String> capabilities = new ArrayList<String>();
         final JsonArray jsonCapabilities = obj.getAsJsonArray("Capability");
         for (JsonElement elem : jsonCapabilities) {
             capabilities.add(elem.getAsJsonObject().get("CapabilityName").getAsString());

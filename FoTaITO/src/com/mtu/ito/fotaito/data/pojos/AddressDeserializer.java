@@ -17,13 +17,13 @@ public class AddressDeserializer implements JsonDeserializer<Address> {
         final double longitude = obj.get("Longitude").getAsDouble();
         final String line = obj.get("AddressLine1").getAsString();
         final String city = obj.get("City").getAsString();
-        final String country = obj.get("Country").getAsString();
+        final String county = obj.get("County").getAsString();
         final String subdivision = obj.get("Subdivision").getAsString();
         final String postalCode = obj.get("PostalCode").getAsString();
         final String countryName = obj.get("CountryName").getAsString();
         final String formattedAddr = obj.get("FormattedAddress").getAsString();
 
         return new Address(latitude, longitude, line, city,
-                country, subdivision, postalCode, countryName, formattedAddr);
+                county, subdivision, postalCode, countryName, formattedAddr);
     }
 }

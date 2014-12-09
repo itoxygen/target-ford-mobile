@@ -97,6 +97,14 @@ public class DrawerActivity extends Activity {
             return true;
         }
 
+        if (item.getItemId() == android.R.id.home) {
+            final FragmentManager fragmentManager = getFragmentManager();
+            if (fragmentManager.getBackStackEntryCount() > 0) { // Pop fragment
+                popFragment();
+                return true;
+            }
+        }
+
         return super.onOptionsItemSelected(item);
     }
 

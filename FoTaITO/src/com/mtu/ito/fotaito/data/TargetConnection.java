@@ -1,5 +1,6 @@
 package com.mtu.ito.fotaito.data;
 
+import android.util.Log;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.mtu.ito.fotaito.data.pojos.*;
@@ -18,12 +19,14 @@ import java.util.Map;
  * @author Kyle Oswald
  */
 public class TargetConnection {
+    private static final String TAG = TargetConnection.class.getSimpleName();
+
     // Key to be passed with each request for authentication
     private static final String API_KEY = "P0CrGVTiWK0jCg7Yh8WiklJmcbbd9aJq";
 
     private static final String GET_NEARBY_STORES_ENDPOINT = "http://api.target.com/v2/store";
 
-    private static final String SEARCH_WEEKLY_AD_ENDPOINT = "v1/promotions/weeklyad/%s/search";
+    private static final String SEARCH_WEEKLY_AD_ENDPOINT = "http://api.target.com/v1/promotions/weeklyad/%s/search";
 
     public TargetConnection() {
 
@@ -45,6 +48,7 @@ public class TargetConnection {
         final Map<String, String> params = new HashMap<String, String>();
         params.put("nearby", lat + "," + lon);
         params.put("range", Integer.toString(range));
+        params.put("limit", "15");
 
         final InputStreamReader stream = getEndpointJson(GET_NEARBY_STORES_ENDPOINT, params);
 
@@ -97,6 +101,9 @@ public class TargetConnection {
         final String query = encodeParams(params);
 
         final URL net = new URL(url + query);
+
+        Log.d(TAG, "Hitting endpoint: " + net.toString());
+
         final URLConnection cnn = net.openConnection();
         cnn.setRequestProperty("Accept", "application/json");
         cnn.setDoInput(true);

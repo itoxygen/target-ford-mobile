@@ -8,20 +8,20 @@ public class Address {
     private double _longitude;
     private String _line;
     private String _city;
-    private String _country;
+    private String _county;
     private String _subdivision;
     private String _postalCode;
     private String _countryName;
     private String _formattedAddress;
 
     public Address(final double latitude, final double longitude, final String line, final String city,
-            final String country, final String subdivision, final String postalCode, final String countryName,
+            final String county, final String subdivision, final String postalCode, final String countryName,
             final String formattedAddress) {
         _latitude = latitude;
         _longitude = longitude;
         _line = line;
         _city = city;
-        _country = country;
+        _county = county;
         _subdivision = subdivision;
         _postalCode = postalCode;
         _countryName = countryName;
@@ -44,8 +44,8 @@ public class Address {
         return _city;
     }
 
-    public String getCountry() {
-        return _country;
+    public String getCounty() {
+        return _county;
     }
 
     public String getSubdivision() {

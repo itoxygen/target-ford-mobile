@@ -68,8 +68,8 @@ public class AzureDatabaseManager {
         try {
             _client = new MobileServiceClient(APP_URL, APP_KEY, context)
                     .withFilter(new RefreshTokenCacheFilter());
-            _client.getGsonBuilder()
-                   .registerTypeAdapter(WeeklyAdListing.class, null);
+            _client.getGsonBuilder();
+                   //.registerTypeAdapter(WeeklyAdListing.class, null);
         } catch (MalformedURLException e) {
             throw new RuntimeException(e);
         }
@@ -84,6 +84,8 @@ public class AzureDatabaseManager {
 
         final CountDownLatch latch = new CountDownLatch(offerList.size());
 
+        // looking at the azure code this is probably superfluous as it doesn't seem to actually
+        // kick off any threads and all of its methods appear to be blocking...
         for (WeeklyAdListing listing : offerList) {
             Futures.addCallback(table.insert(listing), new FutureCallback<WeeklyAdListing>() {
                 @Override
