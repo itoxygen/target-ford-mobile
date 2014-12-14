@@ -14,8 +14,9 @@ import com.microsoft.windowsazure.mobileservices.http.ServiceFilter;
 import com.microsoft.windowsazure.mobileservices.http.ServiceFilterRequest;
 import com.microsoft.windowsazure.mobileservices.http.ServiceFilterResponse;
 import com.microsoft.windowsazure.mobileservices.table.MobileServiceTable;
-import com.mtu.ito.fotaito.data.pojos.WeeklyAdListing;
-import com.mtu.ito.fotaito.data.pojos.WeeklyAdOffer;
+import com.mtu.ito.fotaito.data.pojos.SavedListing;
+import com.mtu.ito.fotaito.data.pojos.SavedListingDeserializer;
+import com.mtu.ito.fotaito.data.pojos.SavedListingSerializer;
 
 import java.net.MalformedURLException;
 import java.util.List;
@@ -48,6 +49,8 @@ public class AzureDatabaseManager {
     private static final String KEY_ACCESS_TOKEN  = "Azure.KEY_ACCESS_TOKEN";
     private static final String KEY_USER_ID       = "Azure.KEY_USER_ID";
 
+    private static final String TABLE_OFFERS = "offers";
+
     private static final String VALUE_UNDEFINED = "undefined";
 
     // Azure url & key to use when making client
@@ -68,8 +71,9 @@ public class AzureDatabaseManager {
         try {
             _client = new MobileServiceClient(APP_URL, APP_KEY, context)
                     .withFilter(new RefreshTokenCacheFilter());
-            _client.getGsonBuilder();
-                   //.registerTypeAdapter(WeeklyAdListing.class, null);
+            _client.getGsonBuilder()
+                   .registerTypeAdapter(SavedListing.class, new SavedListingSerializer())
+                   .registerTypeAdapter(SavedListing.class, new SavedListingDeserializer());
         } catch (MalformedURLException e) {
             throw new RuntimeException(e);
         }
@@ -79,22 +83,32 @@ public class AzureDatabaseManager {
         _provider = MobileServiceAuthenticationProvider.Google;
     }
 
-    public void putOffers(final List<WeeklyAdListing> offerList) {
-        final MobileServiceTable<WeeklyAdListing> table = _client.getTable("", WeeklyAdListing.class);
+    /**
+     * Inserts each SavedListing into the offers table for the logged in user.
+     *
+     * @param offerList List of SavedListings
+     * @return True on success
+     */
+    public boolean insertSavedListings(final List<SavedListing> offerList) {
+        final MobileServiceTable<SavedListing> table = _client.getTable(TABLE_OFFERS, SavedListing.class);
 
         final CountDownLatch latch = new CountDownLatch(offerList.size());
 
+        final AtomicBoolean success = new AtomicBoolean(true);
+
         // looking at the azure code this is probably superfluous as it doesn't seem to actually
         // kick off any threads and all of its methods appear to be blocking...
-        for (WeeklyAdListing listing : offerList) {
-            Futures.addCallback(table.insert(listing), new FutureCallback<WeeklyAdListing>() {
+        for (SavedListing listing : offerList) {
+            Futures.addCallback(table.insert(listing), new FutureCallback<SavedListing>() {
                 @Override
-                public void onSuccess(WeeklyAdListing weeklyAdListing) {
+                public void onSuccess(SavedListing weeklyAdListing) {
                     latch.countDown();
                 }
 
                 @Override
                 public void onFailure(Throwable throwable) {
+                    Log.e(TAG, "Failed to insert saved listing.", throwable);
+                    success.set(false);
                     latch.countDown();
                 }
             });
@@ -105,20 +119,65 @@ public class AzureDatabaseManager {
         } catch (InterruptedException e) {
             Thread.currentThread().interrupt();
         }
+
+        return success.get();
     }
 
-    public List<WeeklyAdListing> getOffers() throws MobileServiceException {
-        final MobileServiceTable<WeeklyAdListing> table = _client.getTable("", WeeklyAdListing.class);
-        table.execute();
-        return null;
-    }
+    /**
+     * Gets the SavedListings from the offers table for the logged in user.
+     *
+     * @return User's SavedListings
+     * @throws MobileServiceException
+     */
+    public List<SavedListing> getSavedListings() throws MobileServiceException {
+        final MobileServiceTable<SavedListing> table = _client.getTable(TABLE_OFFERS, SavedListing.class);
 
-    public void removeOffers(final List<WeeklyAdListing> offerList) {
-        final MobileServiceTable<WeeklyAdListing> table = _client.getTable("", WeeklyAdListing.class);
-
-        for (WeeklyAdListing listing : offerList) {
-            table.delete(listing);
+        try {
+            return table.execute().get();
+        } catch (InterruptedException e) {
+            Thread.currentThread().interrupt();
+            throw new MobileServiceException(e);
+        } catch (ExecutionException e) {
+            throw new MobileServiceException(e);
         }
+    }
+
+    /**
+     * Deletes each SavedListing from the offers table for the logged in user.
+     *
+     * @param offerList Records to delete
+     * @return True on success
+     */
+    public boolean deleteSavedListings(final List<SavedListing> offerList) {
+        final MobileServiceTable<SavedListing> table = _client.getTable(TABLE_OFFERS, SavedListing.class);
+
+        final CountDownLatch latch = new CountDownLatch(offerList.size());
+
+        final AtomicBoolean success = new AtomicBoolean(true);
+
+        for (SavedListing listing : offerList) {
+            Futures.addCallback(table.delete(listing), new FutureCallback<Void>() {
+                @Override
+                public void onSuccess(final Void v) {
+                    latch.countDown();
+                }
+
+                @Override
+                public void onFailure(final Throwable throwable) {
+                    Log.e(TAG, "Failed to delete saved listing.", throwable);
+                    success.set(false);
+                    latch.countDown();
+                }
+            });
+        }
+
+        try {
+            latch.await();
+        } catch (InterruptedException e) {
+            Thread.currentThread().interrupt();
+        }
+
+        return success.get();
     }
 
     public void login(final LoginCallback callback) {
@@ -147,6 +206,7 @@ public class AzureDatabaseManager {
         }
     }
 
+    @SuppressWarnings("unused")
     public Context getContext() {
         return _client.getContext();
     }
@@ -284,7 +344,7 @@ public class AzureDatabaseManager {
         synchronized (AUTHENTICATION_LOCK) {
             boolean ret = false;
 
-            while (_isAuthenticating.get() == true) {
+            while (_isAuthenticating.get()) {
                 ret = true;
 
                 try {
@@ -329,8 +389,6 @@ public class AzureDatabaseManager {
      * that request.
      */
     private class RefreshTokenCacheFilter implements ServiceFilter {
-        AtomicBoolean mAtomicAuthenticatingFlag = new AtomicBoolean();
-
         @Override
         public ListenableFuture<ServiceFilterResponse> handleRequest(final ServiceFilterRequest request,
                 final NextServiceFilterCallback nextServiceFilterCallback) {

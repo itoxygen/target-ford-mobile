@@ -3,6 +3,7 @@ package com.mtu.ito.fotaito.scenarios;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import com.mtu.ito.fotaito.data.pojos.SavedListing;
 import com.mtu.ito.fotaito.data.pojos.TargetStore;
 import com.mtu.ito.fotaito.data.pojos.WeeklyAdListing;
 import com.mtu.ito.fotaito.frontend.MainActivity;
@@ -20,10 +21,12 @@ public final class ScenarioUtil {
         final Intent intent = new Intent(context, StarterActivity.class);
         intent.putExtra(MainActivity.KEY_FRAGMENT, ProductFragment.class.getName());
 
+        final SavedListing sl = new SavedListing(message, listing, store);
+
         final Bundle fragmentArgs = new Bundle();
-        fragmentArgs.putSerializable(ProductFragment.KEY_STORE, store);
-        fragmentArgs.putSerializable(ProductFragment.KEY_LISTING, listing);
-        fragmentArgs.putString(ProductFragment.KEY_MESSAGE, message);
+        fragmentArgs.putSerializable(ProductFragment.KEY_LISTING, sl);
+        fragmentArgs.putBoolean(ProductFragment.KEY_SAVED, false);
+
         intent.putExtra(MainActivity.KEY_ARGS, fragmentArgs);
 
         return intent;

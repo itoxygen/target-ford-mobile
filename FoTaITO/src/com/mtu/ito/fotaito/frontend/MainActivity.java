@@ -3,23 +3,26 @@ package com.mtu.ito.fotaito.frontend;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.content.Intent;
-import android.nfc.Tag;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
+import android.view.ViewConfiguration;
 import com.mtu.ito.fotaito.R;
 import com.mtu.ito.fotaito.data.AzureDatabaseManager;
 import com.mtu.ito.fotaito.data.TargetConnection;
 import com.mtu.ito.fotaito.data.pojos.TargetStore;
-import com.mtu.ito.fotaito.data.pojos.WeeklyAdListing;
 import com.mtu.ito.fotaito.scenarios.EnergyDrinkScenario;
 import com.mtu.ito.fotaito.service.CarState;
 
 import java.io.IOException;
+import java.lang.reflect.Field;
 import java.util.HashMap;
 import java.util.List;
 
 /**
- * Created by Kyle on 11/2/2014.
+ * @author Kyle Oswald
  */
 public class MainActivity extends DrawerActivity {
     // Always start a new activity/fragment/service with this line (replace class name)
@@ -49,6 +52,18 @@ public class MainActivity extends DrawerActivity {
         super.onCreate(savedInstanceState);
 
         _db = AzureDatabaseManager.getInstance(this);
+
+        // Force options menu to appear in action bar
+        try {
+            final ViewConfiguration config = ViewConfiguration.get(this);
+            final Field menuKeyField = ViewConfiguration.class.getDeclaredField("sHasPermanentMenuKey");
+            if(menuKeyField != null) {
+                menuKeyField.setAccessible(true);
+                menuKeyField.setBoolean(config, false);
+            }
+        } catch (Exception ex) {
+            // Ignore
+        }
 
         setDrawerTitle(_db.getLoggedInUserId());
 
@@ -195,6 +210,8 @@ public class MainActivity extends DrawerActivity {
                     }
                 } catch (IOException e) {
                     Log.e(TAG, "Error while testing scenario.", e);
+                } catch (Exception e) {
+                    Log.e(TAG, "What is this?", e);
                 }
             }
         }).start();
@@ -208,7 +225,25 @@ public class MainActivity extends DrawerActivity {
 
     @Override
     public void onBackPressed() {
-        setResult(RESULT_EXIT); // Let the starter know not to re-login
-        finish();
+        final FragmentManager fragmentManager = getFragmentManager();
+        if (fragmentManager.getBackStackEntryCount() > 0) { // Pop fragment
+            popFragment();
+        } else { // Let the starter know not to re-login
+            setResult(RESULT_EXIT);
+            finish();
+        }
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(final Menu menu) {
+        final MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.main_menu, menu);
+
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(final MenuItem item) {
+        return super.onOptionsItemSelected(item);
     }
 }
