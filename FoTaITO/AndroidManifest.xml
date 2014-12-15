@@ -20,11 +20,11 @@
         </activity>
 
         <activity android:name=".frontend.MainActivity"/>
-        <activity android:name=".frontend.ScenarioActivity"/>
+        <activity android:name=".backend.ScenarioActivity"/>
         <activity android:name=".frontend.SandboxActivity"/>
 
         <service android:name=".service.BluetoothService"/>
-        <service android:enabled="true" android:name=".frontend.ScenarioService"/>
+        <service android:enabled="true" android:name=".backend.ScenarioService"/>
 
     </application>
 </manifest>

@@ -18,6 +18,8 @@ public class EnergyDrinkScenario implements Scenario {
     private static final String TAG = EnergyDrinkScenario.class.getSimpleName();
 
     private static final String MSG = "Feeling tired? How about a pick-me-up?";
+    private static final String DESC = "You're quickly coming up on a Target store, Make a quick pit-stop for a discounted " +
+            "energy drink!";
 
     @Override
     public Intent satisfied(final CarState state, final TargetConnection cnn,
@@ -39,4 +41,8 @@ public class EnergyDrinkScenario implements Scenario {
 
         return null;
     }
+
+    /** Getters for notification content */
+    public String getMsg() { return MSG; }
+    public String getDesc() { return DESC; }
 }
