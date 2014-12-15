@@ -19,11 +19,9 @@ import java.io.IOException;
 import java.util.List;
 
 /**
- * Created by Keagan on 11/9/14.
+ * @author Keagan Rasmussen
  */
-
-
-public class ScenarioService extends Service{
+public class ScenarioService extends Service {
     /* Android logging tag */
     private static final String TAG = ScenarioService.class.getSimpleName();
 
@@ -109,7 +107,7 @@ public class ScenarioService extends Service{
         NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(this)
                 .setContentTitle(notificationTitle)
                 .setContentText(notificationText)
-                .setSmallIcon(R.drawable.icon)
+                .setSmallIcon(R.drawable.ic_launcher)
                 .setAutoCancel(true);
 
         // activity to call on launch. MainActivity is launched - the onResume() method handles fragment creation

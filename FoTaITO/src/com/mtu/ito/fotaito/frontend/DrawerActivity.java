@@ -86,8 +86,19 @@ public class DrawerActivity extends Activity {
         // Required to allow opening drawer via app icon
         actionBar.setDisplayHomeAsUpEnabled(true);
         actionBar.setHomeButtonEnabled(true);
+        _drawerToggle.setDrawerIndicatorEnabled(false); // Changes home button to drawer toggle
         _drawerToggle.setDrawerIndicatorEnabled(true); // Changes home button to drawer toggle
     }
+
+    /*
+    @Override
+    public void onResume() {
+        super.onResume();
+
+        final FragmentManager fragmentManager = getFragmentManager();
+        if (fragmentManager.getBackStackEntryCount() == 0) { // Pop fragment
+    }
+    */
 
     @Override
     public boolean onOptionsItemSelected(final MenuItem item) {

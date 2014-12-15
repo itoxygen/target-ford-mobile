@@ -41,8 +41,6 @@ public class MainActivity extends DrawerActivity {
     public static final int RESULT_EXIT   = 0;
     public static final int RESULT_LOGOUT = 1;
 
-    private final HashMap<String, DrawerItem> _tabMap = new HashMap<String, DrawerItem>();
-
     private String _tab;
 
     private AzureDatabaseManager _db;
