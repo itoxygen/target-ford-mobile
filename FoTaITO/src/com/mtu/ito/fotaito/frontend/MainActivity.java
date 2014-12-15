@@ -158,7 +158,7 @@ public class MainActivity extends DrawerActivity {
             openTab(tab);
         } else if (_tab == null) { // Open default tab on creation
             openTab(TAB_OFFERS);
-            testShit();
+//            testShit();
         }
     }
 
