@@ -3,6 +3,7 @@ package com.mtu.ito.fotaito.backend;
 import android.app.*;
 import android.content.Context;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.IBinder;
 import android.os.StrictMode;
 import android.support.v4.app.NotificationCompat;
@@ -11,6 +12,7 @@ import com.mtu.ito.fotaito.R;
 import com.mtu.ito.fotaito.data.TargetConnection;
 import com.mtu.ito.fotaito.data.pojos.TargetStore;
 import com.mtu.ito.fotaito.frontend.MainActivity;
+import com.mtu.ito.fotaito.frontend.StarterActivity;
 import com.mtu.ito.fotaito.scenarios.EnergyDrinkScenario;
 import com.mtu.ito.fotaito.service.CarState;
 import android.os.Bundle;
@@ -18,17 +20,16 @@ import android.os.Bundle;
 import java.io.IOException;
 import java.util.List;
 
+/* Changes
+ * - TODO Put the scenario checks into a background thread & removed threading policy override
+ * - DONE Set up the notification to route through StarterActivity so the user can log in
+ */
 /**
  * @author Keagan Rasmussen
  */
 public class ScenarioService extends Service {
     /* Android logging tag */
     private static final String TAG = ScenarioService.class.getSimpleName();
-
-    // Key values recognized in received intents
-    public static final String KEY_FRAGMENT = "MainActivity.KEY_FRAGMENT";
-    public static final String KEY_ARGS     = "MainActivity.KEY_ARGS";
-    public static final String KEY_TAB      = "MainActivity.KEY_TAB";
 
     int mStartMode; // indicates behavior when service is killed
     IBinder mBinder; // interface that clients bind to
@@ -56,7 +57,6 @@ public class ScenarioService extends Service {
     @Override
     public void onDestroy() {}
 
-
     /**
      * Runs through the list of all possible scenarios
      * Creates a notification to the device when a match is found
@@ -64,7 +64,7 @@ public class ScenarioService extends Service {
      *
      * @return boolean - Whether a scenario match was found
      */
-    public boolean checkScenarios() {
+    private boolean checkScenarios() {
 
         // Get snapshots needed for checks
         final TargetConnection cnn = new TargetConnection();
@@ -100,7 +100,7 @@ public class ScenarioService extends Service {
     /**
      * Send a notification to the device
      */
-    public void createNotification(String notificationTitle, String notificationText,
+    private void createNotification(String notificationTitle, String notificationText,
                                    Intent intentToLaunch) {
 
         // basic notification builder
@@ -110,25 +110,30 @@ public class ScenarioService extends Service {
                 .setSmallIcon(R.drawable.ic_launcher)
                 .setAutoCancel(true);
 
-        // activity to call on launch. MainActivity is launched - the onResume() method handles fragment creation
-        Intent mainIntent = new Intent(this, MainActivity.class);
+        // activity to call on launch. Routes through StarterActivity for authentication
+        Intent mainIntent = new Intent(this, StarterActivity.class);
+        // StarterActivity should always be the root of the stack
+        mainIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 
         // transfer bundles to mainIntent
-        Bundle myBundle = intentToLaunch.getExtras();
-        mainIntent.putExtras(myBundle);
-
+        mainIntent.putExtras(intentToLaunch);
+        //Bundle myBundle = intentToLaunch.getExtras();
+        //mainIntent.putExtras(myBundle);
 
         // Create artificial stack to ensure moving back from activity leads to home screen
-        TaskStackBuilder stackBuilder = TaskStackBuilder.create(this);
-        stackBuilder.addParentStack(MainActivity.class);
+        //TaskStackBuilder stackBuilder = TaskStackBuilder.create(this);
+        //stackBuilder.addParentStack(MainActivity.class);
 
         // add intent that starts activity to top of stack
-        stackBuilder.addNextIntent(mainIntent);
+        //stackBuilder.addNextIntent(mainIntent);
 
-        PendingIntent resultPendingIntent = stackBuilder.getPendingIntent(
-                0,
-                PendingIntent.FLAG_UPDATE_CURRENT
-        );
+        //PendingIntent resultPendingIntent = stackBuilder.getPendingIntent(
+        //        0,
+        //        PendingIntent.FLAG_UPDATE_CURRENT
+        //);
+
+        final PendingIntent resultPendingIntent = PendingIntent.getActivity(
+                this, 0, mainIntent, PendingIntent.FLAG_UPDATE_CURRENT);
 
         mBuilder.setContentIntent(resultPendingIntent);
 
