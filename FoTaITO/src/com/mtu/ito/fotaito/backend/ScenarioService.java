@@ -10,6 +10,7 @@ import android.util.Log;
 import com.mtu.ito.fotaito.R;
 import com.mtu.ito.fotaito.data.TargetConnection;
 import com.mtu.ito.fotaito.data.pojos.TargetStore;
+import com.mtu.ito.fotaito.frontend.MainActivity;
 import com.mtu.ito.fotaito.scenarios.EnergyDrinkScenario;
 import com.mtu.ito.fotaito.service.CarState;
 import android.os.Bundle;
@@ -46,15 +47,6 @@ public class ScenarioService extends Service{
         // check for any matched discount scenarios
         checkScenarios();
 
-        // sample notification
-//        createNotification(
-//                "Test Notification",
-//                "This is a FoTaITO notification",
-//                "Fragment ID to Launch",
-//                "Any Extra Arguments");
-
-        boolean scenarioMatchFound = checkScenarios();
-
         return 0;
     }
 
@@ -80,11 +72,9 @@ public class ScenarioService extends Service{
         final TargetConnection cnn = new TargetConnection();
         final CarState state = new CarState(44.9833d, -93.2667d); // Geo coordinates of Minneapolis
 
-        // check for nearby store before carrying on
-//        new Thread(new Runnable() {
-//            @Override
-//            public void run() {
         try {
+
+            // check for nearby store before carrying on
             final List<TargetStore> stores = cnn.queryNearbyStores(state.getLatitude(), state.getLongitude(), 50);
 
             // no stores found. No point in checking scenarios.
@@ -95,8 +85,7 @@ public class ScenarioService extends Service{
 
             final Intent intent = energyDrinkScenario.satisfied(state, cnn, stores, ScenarioService.this);
             if (intent != null) {
-                createNotification(energyDrinkScenario.getMsg(), energyDrinkScenario.getDesc(), null);
-
+                createNotification(energyDrinkScenario.getMsg(), energyDrinkScenario.getDesc(), intent);
                 return true;
             }
 
@@ -107,9 +96,7 @@ public class ScenarioService extends Service{
             Log.e(TAG, "Error while checking scenarios");
             return false;
         }
-//            }
-//        }).start();
-//        return true;
+
     }
 
     /**
@@ -125,19 +112,20 @@ public class ScenarioService extends Service{
                 .setSmallIcon(R.drawable.icon)
                 .setAutoCancel(true);
 
-        // activity to call on launch
-        Intent scenIntent = new Intent(this, ScenarioActivity.class);
+        // activity to call on launch. MainActivity is launched - the onResume() method handles fragment creation
+        Intent mainIntent = new Intent(this, MainActivity.class);
 
-        // bundle information. Used to
-//        scenIntent.putExtra("KEY_FRAGMENT", fragmentToLaunch);
-//        scenIntent.putExtra("KEY_ARGS", fragmentArgs);
+        // transfer bundles to mainIntent
+        Bundle myBundle = intentToLaunch.getExtras();
+        mainIntent.putExtras(myBundle);
+
 
         // Create artificial stack to ensure moving back from activity leads to home screen
         TaskStackBuilder stackBuilder = TaskStackBuilder.create(this);
-        stackBuilder.addParentStack(ScenarioActivity.class);
+        stackBuilder.addParentStack(MainActivity.class);
 
         // add intent that starts activity to top of stack
-        stackBuilder.addNextIntent(intentToLaunch);
+        stackBuilder.addNextIntent(mainIntent);
 
         PendingIntent resultPendingIntent = stackBuilder.getPendingIntent(
                 0,

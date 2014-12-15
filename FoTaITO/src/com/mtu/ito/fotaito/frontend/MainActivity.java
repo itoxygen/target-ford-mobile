@@ -65,7 +65,12 @@ public class MainActivity extends DrawerActivity {
             // Ignore
         }
 
-        setDrawerTitle(_db.getLoggedInUserId());
+        if (_db.isLoggedIn()) {
+            setDrawerTitle(_db.getLoggedInUserId());
+        } else {
+            Log.e(TAG, "Main activity detected user not logged in");
+
+        }
 
         // My Offers Item
         addDrawerItem(new DrawerItem() {
@@ -173,7 +178,6 @@ public class MainActivity extends DrawerActivity {
             openTab(tab);
         } else if (_tab == null) { // Open default tab on creation
             openTab(TAB_OFFERS);
-//            testShit();
         }
     }
 
