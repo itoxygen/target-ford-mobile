@@ -5,7 +5,7 @@
     <color name="list_divider">#CCC</color>
 
     <color name="selected">#ffcf0100</color>
-    <color name="checked">#DDcf0100</color>
+    <color name="checked">#AAcf0100</color>
     <color name="text_light">#999999</color>
     <color name="white">#FFFFFF</color>
 

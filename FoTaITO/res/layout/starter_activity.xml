@@ -2,13 +2,15 @@
 
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="match_parent" android:background="@drawable/background">
 
     <LinearLayout
             android:orientation="vertical"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_centerVertical="true" android:layout_alignParentLeft="true">
+            android:layout_alignParentLeft="false"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="25dp">
         <Button
                 android:layout_width="280dp"
                 android:layout_height="wrap_content"
@@ -35,4 +37,24 @@
                 android:textColor="@android:color/white" android:textStyle="bold"
                 android:background="@drawable/twitter_button"/>
     </LinearLayout>
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="smart trips"
+            android:id="@+id/textView" android:layout_alignParentTop="true" android:layout_centerHorizontal="true"
+            android:layout_marginTop="22dp" android:textColor="#FFFFFF" android:textSize="50sp"
+            android:fontFamily="roboto" android:visibility="invisible"/>
+    <ImageView
+            android:layout_width="52dp"
+            android:layout_height="52dp"
+            android:id="@+id/imageView" android:layout_below="@+id/textView" android:layout_centerHorizontal="true"
+            android:src="@drawable/road_map_icon"/>
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="Powered by Target and Ford"
+            android:id="@+id/textView2" android:layout_below="@+id/imageView" android:layout_centerHorizontal="true"
+            android:textColor="#FFFFFF" android:padding="8dp"/>
 </RelativeLayout>

@@ -45,7 +45,7 @@ public class ScenarioService extends Service{
         NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(this)
                 .setContentTitle("Test Notificaiton")
                 .setContentText("This is a fotaito notification")
-                .setSmallIcon(R.drawable.icon)
+                .setSmallIcon(R.drawable.ic_launcher)
                 .setAutoCancel(true);
 
         // activity to call on launch
