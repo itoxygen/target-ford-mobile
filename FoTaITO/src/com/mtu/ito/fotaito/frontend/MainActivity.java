@@ -18,7 +18,6 @@ import com.mtu.ito.fotaito.service.CarState;
 
 import java.io.IOException;
 import java.lang.reflect.Field;
-import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -179,6 +178,7 @@ public class MainActivity extends DrawerActivity {
         }
     }
 
+    @SuppressWarnings("unused")
     private void testShit() {
         Log.d(TAG, "Testing shit");
 
