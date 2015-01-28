@@ -27,6 +27,7 @@ public class StarterActivity extends Activity {
     @Override
     public void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.starter_activity);
 
         final Button googleButton = (Button) findViewById(R.id.button_google_sign_in);
@@ -125,7 +126,7 @@ public class StarterActivity extends Activity {
      * code when it finishes.
      */
     private void startMainActivity() {
-        final Intent intent = new Intent(this, MainActivity.class);
+        final Intent intent = new Intent(this, WelcomeActivity.class);
         intent.putExtras(getIntent()); // Forward extras to MainActivity
         startActivityForResult(intent, 0, null);
     }

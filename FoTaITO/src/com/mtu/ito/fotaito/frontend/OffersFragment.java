@@ -90,7 +90,9 @@ public class OffersFragment extends MultiselectListFragment<SavedListing> {
         _task = new AsyncTask<Object, Void, List<SavedListing>>() {
             @Override
             protected List<SavedListing> doInBackground(final Object... params) {
-                try {
+//                protected List<SavedListing> doInBackground(final Object... params) {
+
+                    try {
                     return _db.getSavedListings();
                 } catch (MobileServiceException e) {
                     Log.e(TAG, "Failed to retrieve user saved listings.", e);

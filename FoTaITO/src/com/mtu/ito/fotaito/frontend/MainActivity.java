@@ -8,6 +8,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
 import android.view.ViewConfiguration;
 import com.mtu.ito.fotaito.R;
 import com.mtu.ito.fotaito.data.AzureDatabaseManager;
@@ -47,6 +48,8 @@ public class MainActivity extends DrawerActivity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+//        setContentView(R.layout.main);
 
         _db = AzureDatabaseManager.getInstance(this);
 
