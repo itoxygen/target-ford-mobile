@@ -5,9 +5,12 @@ import android.app.Activity;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.ActionBarDrawerToggle;
 import android.support.v4.widget.DrawerLayout;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 
@@ -116,7 +119,21 @@ public class DrawerActivity extends Activity {
             }
         }
 
-        return super.onOptionsItemSelected(item);
+        // Handle presses on the action bar items
+        switch (item.getItemId()) {
+            case R.id.action_settings:
+                openSettings();
+                return true;
+            case R.id.action_offers:
+                openOffers();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+
+
+
+//        return super.onOptionsItemSelected(item);
     }
 
     public void openFragment(final Class<? extends Fragment> clazz, final Bundle args) throws InstantiationException {
@@ -167,5 +184,24 @@ public class DrawerActivity extends Activity {
 
     public interface DrawerItem {
         public void onClicked();
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.main_menu, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    public void openSettings() {
+        final Intent intent = new Intent(this, SettingsActivity.class);
+        intent.putExtras(getIntent()); // Forward extras to MainActivity
+        startActivityForResult(intent, 0, null);
+    }
+
+    public void openOffers() {
+        final Intent intent = new Intent(this, SavedListingsActivity.class);
+        intent.putExtras(getIntent()); // Forward extras to MainActivity
+        startActivityForResult(intent, 0, null);
     }
 }

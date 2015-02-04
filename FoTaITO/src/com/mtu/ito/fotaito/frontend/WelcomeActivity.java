@@ -41,6 +41,9 @@ public class WelcomeActivity extends Activity {
             case R.id.action_settings:
                 openSettings();
                 return true;
+            case R.id.action_offers:
+                openOffers();
+                return true;
             default:
                 return super.onOptionsItemSelected(item);
         }
@@ -48,6 +51,12 @@ public class WelcomeActivity extends Activity {
 
     public void openSettings() {
         final Intent intent = new Intent(this, SettingsActivity.class);
+        intent.putExtras(getIntent()); // Forward extras to MainActivity
+        startActivityForResult(intent, 0, null);
+    }
+
+    public void openOffers() {
+        final Intent intent = new Intent(this, SavedListingsActivity.class);
         intent.putExtras(getIntent()); // Forward extras to MainActivity
         startActivityForResult(intent, 0, null);
     }

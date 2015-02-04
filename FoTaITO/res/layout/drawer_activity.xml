@@ -11,25 +11,6 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent" >
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="92dp"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="MainActivity"
-            android:id="@+id/textView3"
-            android:layout_gravity="center_horizontal|top"
-            android:textSize="50sp"
-            android:textColor="#FFFFFF"
-            android:paddingTop="20sp"
-            android:paddingLeft="20sp" />
-
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="to welcome"
-            android:id="@+id/button_to_welcome"
-            android:layout_gravity="center" />
-
     </FrameLayout>
 
     <!-- The navigation drawer -->

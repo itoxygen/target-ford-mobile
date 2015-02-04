@@ -3,7 +3,7 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android" >
 
     <item android:id="@+id/action_offers"
-        android:icon="@drawable/road_map_icon"
+        android:icon="@drawable/ic_action_important"
         android:title="Accept"
         android:showAsAction="ifRoom"
         />

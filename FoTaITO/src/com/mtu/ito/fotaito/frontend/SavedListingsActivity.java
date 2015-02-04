@@ -12,25 +12,15 @@ import android.widget.Button;
 import com.mtu.ito.fotaito.R;
 
 /**
- * Created by Keagan on 1/28/2015.
+ * Created by Keagan on 1/29/2015.
  */
-public class SettingsActivity extends Activity {
+public class SavedListingsActivity extends Activity {
 
 
     @Override
     public void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.settings_fragment);
-
-        // register the button to redirect user to sandbox (testing) activity
-        final Button sandboxButton = (Button) findViewById(R.id.button_tosandbox);
-        sandboxButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(final View v) {
-                Intent intent = new Intent(getBaseContext(), SandboxActivity.class);
-                startActivity(intent);
-            }
-        });
+        setContentView(R.layout.saved_listings_activity);
     }
 
 
@@ -72,5 +62,6 @@ public class SettingsActivity extends Activity {
         intent.putExtras(getIntent()); // Forward extras to MainActivity
         startActivityForResult(intent, 0, null);
     }
+
 
 }
