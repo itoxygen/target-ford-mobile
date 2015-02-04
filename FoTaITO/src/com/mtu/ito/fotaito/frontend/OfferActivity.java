@@ -28,7 +28,7 @@ public class OfferActivity extends Activity {
     @Override
     public void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.drawer_activity);
+        setContentView(R.layout.base_offer_view);
 
         try {
             setOfferDetails();
