@@ -11,7 +11,6 @@ import android.util.Log;
 import com.mtu.ito.fotaito.R;
 import com.mtu.ito.fotaito.data.TargetConnection;
 import com.mtu.ito.fotaito.data.pojos.TargetStore;
-import com.mtu.ito.fotaito.frontend.MainActivity;
 import com.mtu.ito.fotaito.frontend.OfferActivity;
 import com.mtu.ito.fotaito.frontend.SettingsActivity;
 import com.mtu.ito.fotaito.frontend.StarterActivity;

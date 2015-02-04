@@ -4,13 +4,23 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
+    <!-- Empty layout (0x0 dp) centered horizontally -->
+    <Space android:id="@+id/dummy"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_centerHorizontal="true"
+        android:visibility="invisible"/>
+
     <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:text="Medium Text"
-            android:id="@+id/text_product_message" android:layout_alignParentTop="true" android:layout_alignParentLeft="true"
-            android:layout_alignParentRight="true" android:layout_margin="10dp" android:textColor="#FFF"/>
+            android:id="@+id/text_product_message"
+        android:textColor="#FFF"
+        android:layout_below="@+id/button_save_listing"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentLeft="true" />
     <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -40,4 +50,22 @@
                 android:id="@+id/image_product" android:layout_centerVertical="true" android:layout_centerHorizontal="true"
                 android:layout_margin="25dp"/>
     </ViewSwitcher>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Save For Later"
+        android:id="@+id/button_save_listing"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_toLeftOf="@+id/dummy" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Take Me There!"
+        android:id="@+id/button_navigate"
+        android:layout_alignParentTop="true"
+        android:layout_toRightOf="@+id/button_save_listing"
+        android:layout_alignParentRight="true" />
 </RelativeLayout>

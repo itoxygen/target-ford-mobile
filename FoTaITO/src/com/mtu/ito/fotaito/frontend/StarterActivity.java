@@ -114,7 +114,7 @@ public class StarterActivity extends Activity {
     protected void onActivityResult(final int requestCode, final int resultCode, final Intent data) {
         Log.d(TAG, "Received result code " + resultCode + " from MainActivity.");
 
-        if (resultCode != MainActivity.RESULT_LOGOUT) { // Exit the app
+        if (resultCode != 1) { // Exit the app
             finish();
         } else {
             //_db.logout(); Moved to MainActivity

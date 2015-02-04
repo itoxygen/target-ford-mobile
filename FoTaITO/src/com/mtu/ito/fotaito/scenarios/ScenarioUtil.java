@@ -6,7 +6,7 @@ import android.os.Bundle;
 import com.mtu.ito.fotaito.data.pojos.SavedListing;
 import com.mtu.ito.fotaito.data.pojos.TargetStore;
 import com.mtu.ito.fotaito.data.pojos.WeeklyAdListing;
-import com.mtu.ito.fotaito.frontend.MainActivity;
+import com.mtu.ito.fotaito.frontend.OfferActivity;
 import com.mtu.ito.fotaito.frontend.ProductFragment;
 import com.mtu.ito.fotaito.frontend.StarterActivity;
 
@@ -19,7 +19,7 @@ public final class ScenarioUtil {
     public static Intent createWeeklyAdListingIntent(final Context context,
             final WeeklyAdListing listing, final TargetStore store, final String message) {
         final Intent intent = new Intent(context, StarterActivity.class);
-        intent.putExtra(MainActivity.KEY_FRAGMENT, ProductFragment.class.getName());
+        intent.putExtra(OfferActivity.KEY_FRAGMENT, ProductFragment.class.getName());
 
         final SavedListing sl = new SavedListing(message, listing, store);
 
@@ -27,7 +27,7 @@ public final class ScenarioUtil {
         fragmentArgs.putSerializable(ProductFragment.KEY_LISTING, sl);
         fragmentArgs.putBoolean(ProductFragment.KEY_SAVED, false);
 
-        intent.putExtra(MainActivity.KEY_ARGS, fragmentArgs);
+        intent.putExtra(OfferActivity.KEY_ARGS, fragmentArgs);
 
         return intent;
     }
