@@ -12,12 +12,14 @@ import com.mtu.ito.fotaito.R;
 import com.mtu.ito.fotaito.data.AzureDatabaseManager;
 
 /**
+ * Target Ford Mobile Team
+ * MTU ITOxygen
+ *
  * Application entry point. Handles user authentication and ensures that there
  * is database access and nothing is corrupted. All extras attached to the intent
- * which starts this activity are forwarded to {@link MainActivity} verbatim.
+ * which starts this activity are forwarded to verbatim.
  * Additional functionality may be added later.
  *
- * @author Kyle Oswald
  */
 public class StarterActivity extends Activity {
     private static final String TAG = StarterActivity.class.getSimpleName();
@@ -30,6 +32,7 @@ public class StarterActivity extends Activity {
 
         setContentView(R.layout.starter_activity);
 
+        // authentication choices
         final Button googleButton = (Button) findViewById(R.id.button_google_sign_in);
         googleButton.setOnClickListener(new View.OnClickListener() {
             @Override

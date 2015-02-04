@@ -12,7 +12,13 @@ import android.widget.Button;
 import com.mtu.ito.fotaito.R;
 
 /**
- * Created by Keagan on 1/29/2015.
+ * Target Ford Mobile Team
+ * MTU ITOxygen
+ *
+ * View all listings that have been saved to azure.
+ *
+ * Allow viewing of individual listing as well as removing from storage
+ *
  */
 public class SavedListingsActivity extends Activity {
 

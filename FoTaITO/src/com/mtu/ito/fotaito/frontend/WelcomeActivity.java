@@ -10,7 +10,10 @@ import android.view.MenuItem;
 import com.mtu.ito.fotaito.R;
 
 /**
- * Created by Keagan on 1/23/2015.
+ * Target Ford Mobile Team
+ * MTU ITOxygen
+ *
+ * Introduction page. Brief description of the app & how to use
  */
 public class WelcomeActivity extends Activity {
 

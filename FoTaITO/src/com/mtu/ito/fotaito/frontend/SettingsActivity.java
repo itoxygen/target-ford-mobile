@@ -12,7 +12,10 @@ import android.widget.Button;
 import com.mtu.ito.fotaito.R;
 
 /**
- * Created by Keagan on 1/28/2015.
+ * Target Ford Mobile Team
+ * MTU ITOxygen
+ *
+ * Settings Page
  */
 public class SettingsActivity extends Activity {
 

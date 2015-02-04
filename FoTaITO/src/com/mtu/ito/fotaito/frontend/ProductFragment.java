@@ -21,17 +21,28 @@ import java.net.URL;
 import java.util.Arrays;
 
 /**
- * @author Kyle Oswald
+ * Target Ford Mobile Team
+ * MTU ITOxygen
+ *
+ * Product Fragment represents the item a scenario has found. It is passed in a bundle
+ * through the notification and launched from OfferActivity.
+ *
+ * See layout.product_fragment for UI details
+ *
+ * Note:
+ * OfferActivity bundles two things:
+ *  1. Serializable SavedListing to be used to populate layout with listing information
+ *  2. Boolean on whether the listing has already been saved in Azure db
+ *
  */
 public class ProductFragment extends Fragment {
     private static final String TAG = ProductFragment.class.getSimpleName();
 
-    //public static final String KEY_STORE = TAG + ".KEY_STORE";
+    // public keys used to pass extra arguments
     public static final String KEY_LISTING = TAG + ".KEY_LISTING";
-    //public static final String KEY_MESSAGE = TAG + ".KEY_MSG";
     public static final String KEY_SAVED = TAG + ".KEY_SAVED";
 
-    // Fragment arguments
+    // Fragment azure arguments
     private SavedListing _listing;
     private boolean _isSaved; // listing is stored in Azure
     private boolean _isSaving; // inserting / deleting from Azure in backend
@@ -50,10 +61,18 @@ public class ProductFragment extends Fragment {
         setHasOptionsMenu(true);
     }
 
+    /**
+     * Sets the layout view
+     *
+     * listing information is bundled in the fragment. once retrieved the information
+     * is used to properly fill the view with information about the listing that
+     * has been found
+     */
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         final View layout = inflater.inflate(R.layout.product_fragment, container, false);
 
+        // get bundled listing information
         final Bundle args = this.getArguments();
         _listing = (SavedListing) args.getSerializable(KEY_LISTING);
         _isSaved = args.getBoolean(KEY_SAVED);
@@ -119,44 +138,9 @@ public class ProductFragment extends Fragment {
         _task.cancel(true); // Cancel product image loading
     }
 
-    @Override
-    public void onCreateOptionsMenu(final Menu menu, final MenuInflater inflater) {
-        super.onCreateOptionsMenu(menu, inflater);
 
-        inflater.inflate(R.menu.product_fragment_menu, menu);
-
-        _saveItem = menu.findItem(R.id.action_save);
-
-        if (_isSaved) {
-            _saveItem.setIcon(R.drawable.ic_action_important);
-        }
-    }
-
-    @Override
-    public void onDestroyOptionsMenu() {
-        _saveItem = null;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(final MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.action_save:
-                if (!_isSaving) {
-                    if (_isSaved) {
-                        deleteSavedListing();
-                    } else {
-                        insertSavedListing();
-                    }
-                }
-
-                return true;
-            case R.id.action_directions:
-
-                return true;
-            default:
-                return super.onOptionsItemSelected(item);
-        }
-    }
+    // Methods to be used to add and remod an item from azure saved db
+    // currently unused, but will need to be re implemented soon
 
     private void deleteSavedListing() {
         _isSaving = true;
