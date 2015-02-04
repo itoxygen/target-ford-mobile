@@ -13,7 +13,12 @@ import com.mtu.ito.fotaito.R;
 import com.mtu.ito.fotaito.backend.ScenarioService;
 
 /**
- * Created by Keagan on 11/9/14.
+ * Target Ford Mobile Team
+ * MTU ITOxygen
+ *
+ * Sandbox testing. Accessed from settings. Dump any testing here that you may need.
+ *
+ * Delete before project end
  */
 public class SandboxActivity extends Activity{
     @Override

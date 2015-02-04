@@ -18,6 +18,15 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 
+/**
+ * Target Ford Mobile Team
+ * MTU ITOxygen
+ *
+ * This class is in some serious need of comments.
+ * I don't even know what half of this does
+ */
+
+
 @SuppressWarnings("unchecked")
 public class MultiselectListFragment<T> extends ListFragment {
 	@SuppressWarnings("unused")

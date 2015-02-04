@@ -6,4 +6,10 @@
     <string name="drawer_open">Drawer Open</string>
     <string name="drawer_closed">Drawer Closed</string>
 
+    <!-- Welcome Screen strings -->
+    <string name="started_intro"><b>Get Started</b><br/>\nConnect your phone to your OBD bluetooth hardware
+    <b>\n\nDrive Away!</b>\nThe app will check for relevant coupons and savings at Target stores nearby.
+    <b>\n\nEnjoy!</b>\nWe\'ll push you amazing Target offers at just the right time. It\'s like magic.
+    </string>
+
 </resources>

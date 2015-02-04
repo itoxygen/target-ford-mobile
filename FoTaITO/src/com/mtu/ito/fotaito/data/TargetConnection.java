@@ -22,7 +22,7 @@ public class TargetConnection {
     private static final String TAG = TargetConnection.class.getSimpleName();
 
     // Key to be passed with each request for authentication
-    private static final String API_KEY = "P0CrGVTiWK0jCg7Yh8WiklJmcbbd9aJq";
+    private static final String API_KEY = "ltVVgaQ8HQNxDADa7FPyVJifTuRIItIL";
 
     private static final String GET_NEARBY_STORES_ENDPOINT = "http://api.target.com/v2/store";
 

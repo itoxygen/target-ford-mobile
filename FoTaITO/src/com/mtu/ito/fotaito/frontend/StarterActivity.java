@@ -12,12 +12,14 @@ import com.mtu.ito.fotaito.R;
 import com.mtu.ito.fotaito.data.AzureDatabaseManager;
 
 /**
+ * Target Ford Mobile Team
+ * MTU ITOxygen
+ *
  * Application entry point. Handles user authentication and ensures that there
  * is database access and nothing is corrupted. All extras attached to the intent
- * which starts this activity are forwarded to {@link MainActivity} verbatim.
+ * which starts this activity are forwarded to verbatim.
  * Additional functionality may be added later.
  *
- * @author Kyle Oswald
  */
 public class StarterActivity extends Activity {
     private static final String TAG = StarterActivity.class.getSimpleName();
@@ -27,8 +29,10 @@ public class StarterActivity extends Activity {
     @Override
     public void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.starter_activity);
 
+        // authentication choices
         final Button googleButton = (Button) findViewById(R.id.button_google_sign_in);
         googleButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -113,7 +117,7 @@ public class StarterActivity extends Activity {
     protected void onActivityResult(final int requestCode, final int resultCode, final Intent data) {
         Log.d(TAG, "Received result code " + resultCode + " from MainActivity.");
 
-        if (resultCode != MainActivity.RESULT_LOGOUT) { // Exit the app
+        if (resultCode != 1) { // Exit the app
             finish();
         } else {
             //_db.logout(); Moved to MainActivity
@@ -125,7 +129,7 @@ public class StarterActivity extends Activity {
      * code when it finishes.
      */
     private void startMainActivity() {
-        final Intent intent = new Intent(this, MainActivity.class);
+        final Intent intent = new Intent(this, WelcomeActivity.class);
         intent.putExtras(getIntent()); // Forward extras to MainActivity
         startActivityForResult(intent, 0, null);
     }

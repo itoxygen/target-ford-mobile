@@ -11,7 +11,8 @@ import android.util.Log;
 import com.mtu.ito.fotaito.R;
 import com.mtu.ito.fotaito.data.TargetConnection;
 import com.mtu.ito.fotaito.data.pojos.TargetStore;
-import com.mtu.ito.fotaito.frontend.MainActivity;
+import com.mtu.ito.fotaito.frontend.OfferActivity;
+import com.mtu.ito.fotaito.frontend.SettingsActivity;
 import com.mtu.ito.fotaito.frontend.StarterActivity;
 import com.mtu.ito.fotaito.scenarios.EnergyDrinkScenario;
 import com.mtu.ito.fotaito.service.CarState;
@@ -73,10 +74,10 @@ public class ScenarioService extends Service {
         try {
 
             // check for nearby store before carrying on
-            final List<TargetStore> stores = cnn.queryNearbyStores(state.getLatitude(), state.getLongitude(), 50);
+            List<TargetStore> stores = cnn.queryNearbyStores(state.getLatitude(), state.getLongitude(), 50);
 
             // no stores found. No point in checking scenarios.
-            if (stores.size() == 0) return false;
+//            if (stores.size() == 0) return false;
 
             // TODO: for each scenario file ( src/com.mtu.ito.fotaito/scenarios/* ) change to loop.
             final EnergyDrinkScenario energyDrinkScenario = new EnergyDrinkScenario();
@@ -111,8 +112,10 @@ public class ScenarioService extends Service {
                 .setAutoCancel(true);
 
         // activity to call on launch. Routes through StarterActivity for authentication
-        Intent mainIntent = new Intent(this, StarterActivity.class);
+//        Intent mainIntent = new Intent(this, MainActivity.class);
         // StarterActivity should always be the root of the stack
+        Intent mainIntent = new Intent(this, OfferActivity.class);
+
         mainIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 
         // transfer bundles to mainIntent
