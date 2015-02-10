@@ -1,0 +1,10 @@
+<component name="libraryTable">
+  <library name="libs3">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/../enabler/libs/bugsnag-android-2.2.3.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../enabler/libs/support-v4-19.1.0.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
