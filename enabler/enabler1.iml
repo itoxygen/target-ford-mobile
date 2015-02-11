@@ -13,10 +13,17 @@
     </content>
     <orderEntry type="jdk" jdkName="Android API 18 Platform" jdkType="Android SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="library" name="libs5" level="project" />
-    <orderEntry type="library" name="libs4" level="project" />
-    <orderEntry type="library" name="libs3" level="project" />
     <orderEntry type="module" module-name="openxc1" />
+    <orderEntry type="module-library" scope="PROVIDED">
+      <library>
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/libs/bugsnag-android-2.2.3.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="library" name="libs4" level="project" />
   </component>
 </module>
 
