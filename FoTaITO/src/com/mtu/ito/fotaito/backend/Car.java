@@ -8,11 +8,13 @@ import com.openxc.*;
 import android.util.Log;
 import com.openxc.measurements.*;
 
-
 /**
  * Created by dshull on 2/15/15.
  */
 public class Car extends Activity {
+
+    /* Car info */
+
 
     private static final String TAG = "StarterActivity";
     private VehicleManager mVehicleManager;
@@ -20,7 +22,7 @@ public class Car extends Activity {
     /*
     Class Level variables
      */
-    private boolean whiperFluidLevel;
+    private boolean whiperFluidStatus;
     private double ambientTemperature; /* not sure what class to use for this */
 
     private double steeringFluid;/* not sure what class to use for this */
@@ -104,7 +106,7 @@ public class Car extends Activity {
             Get the value for windhield wiper status
              */
             final WindshieldWiperStatus whiperVal = (WindshieldWiperStatus) measurement;
-            whiperFluidLevel = whiperVal.getValue().booleanValue();
+            whiperFluidStatus = whiperVal.getValue().booleanValue();
         }
     };
     /*
@@ -127,18 +129,17 @@ public class Car extends Activity {
         }
     };
 
-
-
      /*
     * OPENXC Management
     * */
 
-    private ServiceConnection mConnection = new Servic`eConnection() {
+    private ServiceConnection mConnection = new ServiceConnection() {
         // Called when the connection with the VehicleManager service is
         // established, i.e. bound.
         public void onServiceConnected(ComponentName className,
                                        IBinder service) {
             Log.i(TAG, "Bound to VehicleManager");
+
             // When the VehicleManager starts up, we store a reference to it
             // here in "mVehicleManager" so we can call functions on it
             // elsewhere in our code.
@@ -163,8 +164,8 @@ public class Car extends Activity {
      * These values should never be set by anything but the car object
      * So they've been set to be private accessible only through these getters
      */
-    public double getWhiperFluidLevel() {
-        return whiperFluidLevel;
+    public boolean getWhiperFluidStatus() {
+        return whiperFluidStatus;
     }
 
     public double getAmbientTemperature() {
@@ -183,12 +184,8 @@ public class Car extends Activity {
         return fuelLevel;
     }
 
-    public double getEngineSpeed() {
-        return engineSpeed;
-    }
-
-    public double getVehicleSpeed() {
-        return vehicleSpeed;
+    public double getSpeed() {
+        return speed;
     }
 
     public double getOdometer() {

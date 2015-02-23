@@ -19,13 +19,12 @@
             </intent-filter>
         </activity>
 
+        <service android:name="com.openxc.VehicleManager"/>
         <activity android:name=".frontend.SandboxActivity"/>
         <activity android:name=".frontend.WelcomeActivity"/>
         <activity android:name=".frontend.SettingsActivity"/>
         <activity android:name=".frontend.SavedListingsActivity"/>
         <activity android:name=".frontend.OfferActivity"/>
-
-
 
         <service android:name=".service.BluetoothService"/>
         <service android:enabled="true" android:name=".backend.ScenarioService"/>
