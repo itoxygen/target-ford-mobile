@@ -3,9 +3,11 @@ package com.mtu.ito.fotaito.frontend;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.app.ActionBar;
 
 import com.mtu.ito.fotaito.R;
 
@@ -34,6 +36,16 @@ public class WelcomeActivity extends Activity {
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.main_menu, menu);
+//        ActionBar actionBar = getActionBar();
+//        actionBar.setDisplayShowCustomEnabled(true);
+//        actionBar.setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
+//        actionBar.setCustomView(getLayoutInflater().inflate(R.layout.abc_action_bar_home, null));
+//            new ActionBar.LayoutParams(
+//                    ActionBar.LayoutParams.WRAP_CONTENT,
+//                    ActionBar.LayoutParams.MATCH_PARENT,
+//                    Gravity.CENTER
+//            );
+
         return super.onCreateOptionsMenu(menu);
     }
 
@@ -44,8 +56,11 @@ public class WelcomeActivity extends Activity {
             case R.id.action_settings:
                 openSettings();
                 return true;
-            case R.id.action_offers:
-                openOffers();
+            case R.id.action_saved_listings:
+                openSavedListings();
+                return true;
+            case R.id.action_help:
+                openHelp();
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
@@ -58,8 +73,14 @@ public class WelcomeActivity extends Activity {
         startActivityForResult(intent, 0, null);
     }
 
-    public void openOffers() {
+    public void openSavedListings() {
         final Intent intent = new Intent(this, SavedListingsActivity.class);
+        intent.putExtras(getIntent()); // Forward extras to MainActivity
+        startActivityForResult(intent, 0, null);
+    }
+
+    public void openHelp() {
+        final Intent intent = new Intent(this, WelcomeActivity.class);
         intent.putExtras(getIntent()); // Forward extras to MainActivity
         startActivityForResult(intent, 0, null);
     }

@@ -86,8 +86,8 @@ public class OfferActivity extends Activity {
             case R.id.action_settings:
                 openSettings();
                 return true;
-            case R.id.action_offers:
-                openOffers();
+            case R.id.action_saved_listings:
+                openSavedListings();
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
@@ -100,7 +100,7 @@ public class OfferActivity extends Activity {
         startActivityForResult(intent, 0, null);
     }
 
-    public void openOffers() {
+    public void openSavedListings() {
         final Intent intent = new Intent(this, SavedListingsActivity.class);
         intent.putExtras(getIntent()); // Forward extras to MainActivity
         startActivityForResult(intent, 0, null);

@@ -2,16 +2,17 @@
 
 <menu xmlns:android="http://schemas.android.com/apk/res/android" >
 
-    <item android:id="@+id/action_offers"
-        android:icon="@drawable/ic_action_important_white"
-        android:title="Accept"
-        android:showAsAction="ifRoom"
+    <item android:id="@+id/action_saved_listings"
+        android:title="saved listings"
         />
 
     <item android:id="@+id/action_settings"
-        android:icon="@drawable/ic_action_settings_white"
-        android:title="Accept"
-        android:showAsAction="ifRoom"
+        android:title="settings"
+
+        />
+
+    <item android:id="@+id/action_help"
+        android:title="help"
         />
 
 </menu>
