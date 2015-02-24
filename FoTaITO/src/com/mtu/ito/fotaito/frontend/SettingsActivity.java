@@ -1,5 +1,6 @@
 package com.mtu.ito.fotaito.frontend;
 
+import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -17,7 +18,7 @@ import com.mtu.ito.fotaito.R;
  *
  * Settings Page
  */
-public class SettingsActivity extends Activity {
+public class SettingsActivity extends MyActivity {
 
 
     @Override
@@ -35,8 +36,4 @@ public class SettingsActivity extends Activity {
             }
         });
     }
-
-
-
-
 }
