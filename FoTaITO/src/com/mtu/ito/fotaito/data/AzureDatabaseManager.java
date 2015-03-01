@@ -133,11 +133,14 @@ public class AzureDatabaseManager {
         final MobileServiceTable<SavedListing> table = _client.getTable(TABLE_OFFERS, SavedListing.class);
 
         try {
+            Log.d(TAG, "executing table get");
             return table.execute().get();
         } catch (InterruptedException e) {
+            Log.e(TAG, "InterttupedException thrown in db manager");
             Thread.currentThread().interrupt();
             throw new MobileServiceException(e);
         } catch (ExecutionException e) {
+            Log.e(TAG, "ExecutionException thrown in db manager");
             throw new MobileServiceException(e);
         }
     }

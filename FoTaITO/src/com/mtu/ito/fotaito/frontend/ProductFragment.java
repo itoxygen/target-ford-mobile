@@ -86,6 +86,14 @@ public class ProductFragment extends Fragment {
         final TextView priceView = (TextView) layout.findViewById(R.id.text_product_price);
         priceView.setText(_listing.getListing().getPrice());
 
+        // register save button
+        layout.findViewById(R.id.button_save_listing).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                insertSavedListing();
+            }
+        });
+
         _flipper = (ViewSwitcher) layout.findViewById(R.id.flipper);
         _productImage = (ImageView) layout.findViewById(R.id.image_product);
 
@@ -163,9 +171,9 @@ public class ProductFragment extends Fragment {
                 if (result) {
                     _isSaved = false;
 
-                    if (_saveItem != null) {
-                        _saveItem.setIcon(R.drawable.ic_action_not_important);
-                    }
+//                    if (_saveItem != null) {
+//                        _saveItem.setIcon(R.drawable.ic_action_not_important);
+//                    }
                 }
 
                 _isSaving = false;
@@ -177,6 +185,8 @@ public class ProductFragment extends Fragment {
 
     private void insertSavedListing() {
         _isSaving = true;
+        Log.d(TAG, "saving listing");
+
 
         final AsyncTask<SavedListing, Void, Boolean> task = new AsyncTask<SavedListing, Void, Boolean>() {
             @Override
@@ -202,9 +212,11 @@ public class ProductFragment extends Fragment {
                 }
 
                 _isSaving = false;
+                Log.d(TAG, "saved? " + _isSaved);
             }
         };
 
         task.execute(_listing);
+        Log.d(TAG, "executing save listing");
     }
 }

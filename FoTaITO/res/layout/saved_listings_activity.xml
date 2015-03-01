@@ -121,7 +121,8 @@
         android:layout_width="match_parent"
         android:layout_height="75dp"
         android:layout_marginTop="200dp"
-        android:background="@android:color/black">
+        android:background="@android:color/black"
+        android:id="@+id/relativeLayout">
 
         <ImageButton
             android:layout_width="50dp"
@@ -164,6 +165,17 @@
             android:layout_toLeftOf="@+id/map3" />
 
     </RelativeLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="no stored listings"
+        android:id="@+id/text_listings"
+        android:layout_below="@+id/relativeLayout"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentLeft="true" />
 
 
 </RelativeLayout>
