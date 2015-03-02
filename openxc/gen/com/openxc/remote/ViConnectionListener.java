@@ -2,7 +2,7 @@
 
 /*
  * This file is auto-generated.  DO NOT MODIFY.
- * Original file: C:\\Users\\Keagan\\Documents\\GitHub\\target-ford-mobile\\openxc\\src\\com\\openxc\\remote\\ViConnectionListener.aidl
+ * Original file: /Users/brianflanagan/FordTarget/target-ford-mobile/openxc/src/com/openxc/remote/ViConnectionListener.aidl
  */
 package com.openxc.remote;
 public interface ViConnectionListener extends android.os.IInterface
