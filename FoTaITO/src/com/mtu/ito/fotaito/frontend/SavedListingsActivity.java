@@ -8,12 +8,15 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.animation.AlphaAnimation;
 import android.widget.Button;
+import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -89,9 +92,9 @@ public class SavedListingsActivity extends MyActivity {
                 // variables for displaying blocks
                 int marginTop = (int) (metrics.density * 10f + 0.5f); // convert dp to pixels
                 int marginBottom = (int) (metrics.density * 10f + 0.5f);
-                float blockHeight = 75f; // block size
-                boolean color = true; // swapper for alternating color
-                int lastViewID = 0; // holds a reference to the previous blocks id
+                float blockHeight = 75f;    // block size
+                boolean color = true;       // swapper for alternating color
+                int lastViewID = 0;         // holds a reference to the previous blocks id
 
                 // create a listing block for each item in the collection of listings
                 for (SavedListing listing : listingsCollection) {
@@ -124,22 +127,17 @@ public class SavedListingsActivity extends MyActivity {
                     if (color)
                         new_listing_layout.setBackgroundColor(Color.parseColor("#c0392b")); // 767676
                     else
-                        new_listing_layout.setBackgroundColor(Color.parseColor("#7f8c8d")); // a8a8a8
+                        new_listing_layout.setBackgroundColor(Color.parseColor("#696969")); // a8a8a8
                     color = !color;
 
-                    // create textview with product title information
-                    TextView tv = new TextView(SavedListingsActivity.this);
-
+                    TextView tv = createTextView(metrics);
                     tv.setText(listing.getListing().getTitle());
-                    tv.setTextColor(Color.parseColor("#000000")); // black text
 
-                    RelativeLayout.LayoutParams lp = new RelativeLayout.LayoutParams(
-                            RelativeLayout.LayoutParams.WRAP_CONTENT,
-                            RelativeLayout.LayoutParams.WRAP_CONTENT);
-                    tv.setLayoutParams(lp);
+                    ImageView iv = createGenericImageView(metrics);
 
-                    // add textview to block
+                    // add views to block
                     new_listing_layout.addView(tv);
+                    new_listing_layout.addView(iv);
 
                     // add block to parent layout
                     layout_listings.addView(new_listing_layout, rlp);
@@ -152,6 +150,57 @@ public class SavedListingsActivity extends MyActivity {
 //                Log.d(TAG, "getSavedListings task executed successfully? returned " + list.toString());
 
             }
+
+            /**
+             * Create a textview object with correct settings
+             *
+             * @param metrics reference to a DisplayMetrics object
+             *
+             * @return a created textview
+             */
+            protected TextView createTextView(DisplayMetrics metrics) {
+
+                int textWidthLimit = (int) (metrics.density * 300f + 0.5f);
+                TextView tv = new TextView(SavedListingsActivity.this);
+
+                tv.setTextColor(Color.parseColor("#ffffff")); // black text
+                tv.setMaxWidth(textWidthLimit);
+                tv.setGravity(Gravity.LEFT);
+                tv.setPadding((int) (metrics.density * 10f + 0.5f), 0, 0, 0);
+
+                RelativeLayout.LayoutParams lp = new RelativeLayout.LayoutParams(
+                        RelativeLayout.LayoutParams.WRAP_CONTENT,
+                        RelativeLayout.LayoutParams.WRAP_CONTENT);
+                lp.addRule(RelativeLayout.CENTER_VERTICAL);
+                tv.setLayoutParams(lp);
+
+                return tv;
+            }
+
+            /**
+             * Create an ImageView to be used in listings page
+             *
+             * @param metrics
+             * @return imageview with proper settings
+             */
+            protected ImageView createGenericImageView(DisplayMetrics metrics) {
+                ImageView iv = new ImageView(SavedListingsActivity.this);
+
+                // button settings
+                iv.setImageResource(R.drawable.ic_action_down);
+                iv.setPadding(0, 0, 0, (int) (metrics.density * 10f + 0.5f));
+
+                // layout parameters
+                RelativeLayout.LayoutParams lp = new RelativeLayout.LayoutParams(
+                        RelativeLayout.LayoutParams.WRAP_CONTENT,
+                        RelativeLayout.LayoutParams.WRAP_CONTENT);
+                lp.addRule(RelativeLayout.ALIGN_PARENT_RIGHT);
+                lp.addRule(RelativeLayout.CENTER_VERTICAL);
+                iv.setLayoutParams(lp);
+
+                return iv;
+            }
+
         };
 
         task.execute(listingsTable);
