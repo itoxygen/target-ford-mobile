@@ -118,7 +118,17 @@ public class SavedListingsActivity extends MyActivity {
                     new_listing_layout.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
-                            expandListing(v, blockHeight*2);
+                            if (v.getLayoutParams().height == blockHeight) {
+                                // only 1 block can be expanded at a time -> collapse rest
+                                for (SavedListing l : listingsCollection) {
+                                    if (l.getExpandableView().getLayoutParams().height > blockHeight)
+                                        collapse(l.getExpandableView(), blockHeight);
+                                }
+
+                                expand(v, blockHeight * 2);
+
+                            } else
+                                collapse(v, blockHeight);
                         }
                     });
 
@@ -146,6 +156,8 @@ public class SavedListingsActivity extends MyActivity {
                     // add views to block
                     new_listing_layout.addView(tv);
                     new_listing_layout.addView(iv);
+
+                    listing.setExpandableView(new_listing_layout);
 
                     // add block to parent layout
                     layout_listings.addView(new_listing_layout, rlp);
@@ -210,43 +222,21 @@ public class SavedListingsActivity extends MyActivity {
             }
 
             /**
-             * Expand the listing to newHeight and add / move buttons to correct positions
+             * Animate expanding of block
              *
-             * @param v view being expanded
-             * @param newHeight new  height of view
+             * @param v - view to be expanded
+             * @param newHeight - final height of expanded block
              */
-            protected void expandListing(View v, int newHeight) {
-                expand(v, newHeight);
+            public void expand(final View v, final int newHeight) {
+                Log.d(TAG, "expanding to " + newHeight);
 
-//                RelativeLayout.LayoutParams rlp = (RelativeLayout.LayoutParams) v.getLayoutParams();
-//                rlp.height = newHeight;
-//                v.setLayoutParams(rlp);
-
-
-            }
-
-            /**
-             * http://stackoverflow.com/questions/4946295/android-expand-collapse-animation
-             * @param v
-             */
-            public void expand(final View v, int newHeight) {
-
-//                v.measure(RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
-//                final int targetHeight = v.getMeasuredHeight()*2;
-
-                final int targetHeight = newHeight;
                 final int initialHeight = v.getLayoutParams().height;
 
-//                v.getLayoutParams().height = 0;
-//                v.setVisibility(View.VISIBLE);
                 Animation a = new Animation()
                 {
                     @Override
                     protected void applyTransformation(float interpolatedTime, Transformation t) {
-//                        v.getLayoutParams().height = interpolatedTime == 1
-//                                ? RelativeLayout.LayoutParams.WRAP_CONTENT
-//                                : (int)(targetHeight * interpolatedTime);
-                        v.getLayoutParams().height = (int) ((targetHeight - initialHeight) * interpolatedTime + initialHeight);
+                        v.getLayoutParams().height = (int) ((newHeight - initialHeight) * interpolatedTime + initialHeight);
                         v.requestLayout();
                     }
 
@@ -256,8 +246,30 @@ public class SavedListingsActivity extends MyActivity {
                     }
                 };
 
-                // 1dp/ms
-                a.setDuration((int)(targetHeight / v.getContext().getResources().getDisplayMetrics().density));
+                a.setDuration((int)(newHeight / v.getContext().getResources().getDisplayMetrics().density));
+                v.startAnimation(a);
+            }
+
+            public void collapse(final View v, final int newHeight) {
+                Log.d(TAG, "collapsing to " + newHeight);
+
+                final int initialHeight = v.getLayoutParams().height;
+
+                Animation a = new Animation()
+                {
+                    @Override
+                    protected void applyTransformation(float interpolatedTime, Transformation t) {
+                        v.getLayoutParams().height = (int) ((initialHeight - newHeight) * (1 - interpolatedTime) + newHeight);
+                        v.requestLayout();
+                    }
+
+                    @Override
+                    public boolean willChangeBounds() {
+                        return true;
+                    }
+                };
+
+                a.setDuration((int)(newHeight / v.getContext().getResources().getDisplayMetrics().density));
                 v.startAnimation(a);
             }
 

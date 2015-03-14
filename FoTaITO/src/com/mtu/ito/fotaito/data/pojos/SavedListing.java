@@ -1,5 +1,7 @@
 package com.mtu.ito.fotaito.data.pojos;
 
+import android.view.View;
+
 import java.io.Serializable;
 import java.util.UUID;
 
@@ -14,6 +16,7 @@ public class SavedListing implements Serializable {
     private final String _message;
     private final WeeklyAdListing _listing;
     private final String _storeId;
+    private View expandableView;
 
     public SavedListing(final String message, final WeeklyAdListing listing,
             final TargetStore store) {
@@ -21,6 +24,7 @@ public class SavedListing implements Serializable {
         _message = message;
         _listing = listing;
         _storeId = store.getStoreId();
+        expandableView = null;
     }
 
     public SavedListing(final String id, final String message,
@@ -29,6 +33,7 @@ public class SavedListing implements Serializable {
         _message = message;
         _listing = listing;
         _storeId = storeId;
+        expandableView = null;
     }
 
     public String getId() {
@@ -46,4 +51,8 @@ public class SavedListing implements Serializable {
     public String getStoreId() {
         return _storeId;
     }
+
+    public void setExpandableView(View v) { expandableView = v; }
+
+    public View getExpandableView() { return expandableView; }
 }
