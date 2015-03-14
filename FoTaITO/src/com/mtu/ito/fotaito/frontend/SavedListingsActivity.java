@@ -99,71 +99,85 @@ public class SavedListingsActivity extends MyActivity {
                 boolean color = true;       // swapper for alternating color
                 int lastViewID = 0;         // holds a reference to the previous blocks id
 
+                boolean b = true;
+
                 // create a listing block for each item in the collection of listings
                 for (SavedListing listing : listingsCollection) {
 
-                    // set relative layout (block) parameters
-                    RelativeLayout new_listing_layout = new RelativeLayout(SavedListingsActivity.this);
-                    RelativeLayout.LayoutParams rlp = new RelativeLayout.LayoutParams(
-                            RelativeLayout.LayoutParams.MATCH_PARENT, blockHeight);
-                    rlp.bottomMargin = marginBottom; // set bottom margin
+                    lastViewID = listing.buildUIElements(SavedListingsActivity.this, metrics, listingsCollection, lastViewID);
 
-                    // set top align. marginTop if first, below last if not
-                    if (lastViewID == 0)
-                        rlp.topMargin = marginTop;
-                    else
-                        rlp.addRule(RelativeLayout.BELOW, lastViewID);
-
-                    // set click listener for the box
-                    new_listing_layout.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            if (v.getLayoutParams().height == blockHeight) {
-                                // only 1 block can be expanded at a time -> collapse rest
-                                for (SavedListing l : listingsCollection) {
-                                    if (l.getExpandableView().getLayoutParams().height > blockHeight)
-                                        collapse(l.getExpandableView(), blockHeight);
-                                }
-
-                                expand(v, blockHeight * 2);
-
-                            } else
-                                collapse(v, blockHeight);
-                        }
-                    });
-
-                    lastViewID = View.generateViewId();
-                    new_listing_layout.setId(lastViewID);
-
-                    // set background opacity
-                    AlphaAnimation alpha = new AlphaAnimation(0.7f, 0.7f);
-                    alpha.setDuration(0);
-                    alpha.setFillAfter(true);
-                    new_listing_layout.startAnimation(alpha);
-
-                    // alternate background colors
+                    // alternate bg color
                     if (color)
-                        new_listing_layout.setBackgroundColor(Color.parseColor("#c0392b")); // 767676
+                        listing.setParentColor("#c0392b");
                     else
-                        new_listing_layout.setBackgroundColor(Color.parseColor("#696969")); // a8a8a8
+                        listing.setParentColor("#696969");
                     color = !color;
 
-                    TextView tv = createTextView(metrics);
-                    tv.setText(listing.getListing().getTitle());
+                    layout_listings.addView(listing.parentLayout, listing.parentLayoutParams);
 
-                    ImageView iv = createGenericImageView(metrics);
 
-                    // add views to block
-                    new_listing_layout.addView(tv);
-                    new_listing_layout.addView(iv);
-
-                    listing.setExpandableView(new_listing_layout);
-
-                    // add block to parent layout
-                    layout_listings.addView(new_listing_layout, rlp);
-
-                    // increment block top margin
-                    marginTop += 75f;
+//                    // set relative layout (block) parameters
+//                    RelativeLayout new_listing_layout = new RelativeLayout(SavedListingsActivity.this);
+//                    RelativeLayout.LayoutParams rlp = new RelativeLayout.LayoutParams(
+//                            RelativeLayout.LayoutParams.MATCH_PARENT, blockHeight);
+//                    rlp.bottomMargin = marginBottom; // set bottom margin
+//
+//                    // set top align. marginTop if first, below last if not
+//                    if (lastViewID == 0)
+//                        rlp.topMargin = marginTop;
+//                    else
+//                        rlp.addRule(RelativeLayout.BELOW, lastViewID);
+//
+//                    // set click listener for the box
+//                    new_listing_layout.setOnClickListener(new View.OnClickListener() {
+//                        @Override
+//                        public void onClick(View v) {
+//                            if (v.getLayoutParams().height == blockHeight) {
+//                                // only 1 block can be expanded at a time -> collapse rest
+//                                for (SavedListing l : listingsCollection) {
+//                                    if (l.getExpandableView().getLayoutParams().height > blockHeight)
+//                                        collapse(l.getExpandableView(), blockHeight);
+//                                }
+//
+//                                expand(v, blockHeight * 2);
+//
+//                            } else
+//                                collapse(v, blockHeight);
+//                        }
+//                    });
+//
+//                    lastViewID = View.generateViewId();
+//                    new_listing_layout.setId(lastViewID);
+//
+//                    // set background opacity
+//                    AlphaAnimation alpha = new AlphaAnimation(0.7f, 0.7f);
+//                    alpha.setDuration(0);
+//                    alpha.setFillAfter(true);
+//                    new_listing_layout.startAnimation(alpha);
+//
+//                    // alternate background colors
+//                    if (color)
+//                        new_listing_layout.setBackgroundColor(Color.parseColor("#c0392b")); // 767676
+//                    else
+//                        new_listing_layout.setBackgroundColor(Color.parseColor("#696969")); // a8a8a8
+//                    color = !color;
+//
+//                    TextView tv = createTextView(metrics);
+//                    tv.setText(listing.getListing().getTitle());
+//
+//                    ImageView iv = createGenericImageView(metrics);
+//
+//                    // add views to block
+//                    new_listing_layout.addView(tv);
+//                    new_listing_layout.addView(iv);
+//
+//                    listing.setExpandableView(new_listing_layout);
+//
+//                    // add block to parent layout
+//                    layout_listings.addView(new_listing_layout, rlp);
+//
+//                    // increment block top margin
+//                    marginTop += 75f;
                 }
 
 
