@@ -20,11 +20,13 @@ import java.util.List;
 import java.util.UUID;
 
 /**
- * @author Kyle Oswald
+ * SavedListing class
+ *
+ * Holds information for Azure DB storage as well as code
+ * to display the listing graphically in the saved listings page
  */
 public class SavedListing implements Serializable {
     // Has to be named "id" verbatim or azure freaks out
-    // and i dont feel like changing the src code
     private final String id;
 
     public static  String TAG = SavedListing.class.getSimpleName();
@@ -32,18 +34,16 @@ public class SavedListing implements Serializable {
     private final String _message;
     private final WeeklyAdListing _listing;
     private final String _storeId;
-    private View expandableView;
 
     // UI vars for saved listing page
 
     private int marginTop;      // top margin of 1st listing
     private int marginBottom;   // spacing between each listing
-    private int blockHeight;
-    private boolean color;
+    private int blockHeight;    // height of each individual block
 
-    DisplayMetrics metrics;
-    SavedListingsActivity sla;
-    List<SavedListing> listingsCollection;
+    DisplayMetrics metrics;     // information regarding screen size
+    SavedListingsActivity sla;  // Reference used for View creation
+    List<SavedListing> listingsCollection;  // container for all instatiated objects
 
     public RelativeLayout parentLayout;
     public RelativeLayout.LayoutParams parentLayoutParams;
@@ -56,7 +56,6 @@ public class SavedListing implements Serializable {
         _message = message;
         _listing = listing;
         _storeId = store.getStoreId();
-        expandableView = null;
     }
 
     public SavedListing(final String id, final String message,
@@ -65,7 +64,6 @@ public class SavedListing implements Serializable {
         _message = message;
         _listing = listing;
         _storeId = storeId;
-        expandableView = null;
     }
 
     /**
@@ -92,6 +90,10 @@ public class SavedListing implements Serializable {
         return parentLayout.getId();
     }
 
+    /**
+     * Parent Layout holds the background color and contains the Layouts for top and expandable
+     * sections.
+     */
     public void createParentLayout() {
         parentLayout = new RelativeLayout(sla);
 
@@ -99,19 +101,15 @@ public class SavedListing implements Serializable {
         parentLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View vi) {
-                //TODO fix me!
                 if (expandableLayout.getLayoutParams().height == 0) {
                     // only 1 block can be expanded at a time -> collapse rest
                     for (SavedListing l : listingsCollection) {
                         if (l.expandableLayout.getLayoutParams().height > 0)
                             collapse(l.expandableLayout, 0);
                     }
-
                     expand(expandableLayout, blockHeight);
-
-                } else {
+                } else
                     collapse(expandableLayout, 0);
-                }
         }
         });
 
@@ -126,6 +124,21 @@ public class SavedListing implements Serializable {
 
     }
 
+    /**
+     * Create the parent layout parameters.
+     * Separated to keep logic in different containers
+     */
+    public void createParentLayoutParams() {
+        parentLayoutParams = new RelativeLayout.LayoutParams(
+                RelativeLayout.LayoutParams.MATCH_PARENT,
+                RelativeLayout.LayoutParams.WRAP_CONTENT);
+
+        parentLayoutParams.bottomMargin = marginBottom;
+    }
+
+    /**
+     * Top Layout is always present, contains listing title and dropdown indicator
+     */
     public void createTopLayout() {
         topLayout = new RelativeLayout(sla);
 
@@ -144,6 +157,9 @@ public class SavedListing implements Serializable {
         parentLayout.addView(topLayout, rlp);
     }
 
+    /**
+     * Only visible when clicked. Contains detailed information and option buttons
+     */
     public void createExpandableLayout() {
         expandableLayout = new RelativeLayout(sla);
 
@@ -154,19 +170,20 @@ public class SavedListing implements Serializable {
 
         rlp.addRule(RelativeLayout.BELOW, topLayout.getId());
 
+        // TODO: Add options & details
 
         // add to parent
         parentLayout.addView(expandableLayout, rlp);
     }
 
-    public void createParentLayoutParams() {
-        parentLayoutParams = new RelativeLayout.LayoutParams(
-                RelativeLayout.LayoutParams.MATCH_PARENT,
-                RelativeLayout.LayoutParams.WRAP_CONTENT);
-
-        parentLayoutParams.bottomMargin = marginBottom;
-    }
-
+    /**
+     * Dictates spacing between each listing block
+     *
+     * Spacing is set to default marginTop if no viewID is supplied,
+     * else layout is attached to the bottom of the layout above it
+     *
+     * @param viewID - ID of layout that will be above current layout
+     */
     public void setParentTopMargin(int viewID) {
         if (viewID == 0)
             parentLayoutParams.topMargin = marginTop;
@@ -201,7 +218,7 @@ public class SavedListing implements Serializable {
             }
         };
 
-        a.setDuration((int)(newHeight / v.getContext().getResources().getDisplayMetrics().density));
+        a.setDuration((int)(newHeight / v.getContext().getResources().getDisplayMetrics().density)*2);
 
         // start animation and refresh screens
         v.startAnimation(a);
@@ -228,7 +245,7 @@ public class SavedListing implements Serializable {
             }
         };
 
-        a.setDuration((int)(initialHeight / v.getContext().getResources().getDisplayMetrics().density));
+        a.setDuration((int)(initialHeight / v.getContext().getResources().getDisplayMetrics().density)*2);
         v.startAnimation(a);
         View parent = (View) v.getParent();
         parent.invalidate();
@@ -298,8 +315,5 @@ public class SavedListing implements Serializable {
     public String getStoreId() {
         return _storeId;
     }
-//
-//    public void setExpandableView(View v) { expandableView = v; }
-//
-//    public View getExpandableView() { return expandableView; }
+
 }
