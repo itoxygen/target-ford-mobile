@@ -10,6 +10,7 @@ import android.widget.Toast;
 import com.microsoft.windowsazure.mobileservices.authentication.MobileServiceAuthenticationProvider;
 import com.mtu.ito.fotaito.R;
 import com.mtu.ito.fotaito.data.AzureDatabaseManager;
+import com.mtu.ito.fotaito.backend.Car;
 
 /**
  * Target Ford Mobile Team
@@ -29,6 +30,9 @@ public class StarterActivity extends Activity {
     @Override
     public void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        Car newCar = new Car();
+        newCar.getAmbientTemperature();
 
         setContentView(R.layout.starter_activity);
 
