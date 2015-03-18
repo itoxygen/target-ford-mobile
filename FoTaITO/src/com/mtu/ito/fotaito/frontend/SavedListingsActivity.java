@@ -88,7 +88,11 @@ public class SavedListingsActivity extends MyActivity {
                 for (SavedListing listing : listingsCollection) {
 
                     // initialize each listing block
-                    lastViewID = listing.buildUIElements(SavedListingsActivity.this, metrics, listingsCollection, lastViewID);
+                    lastViewID = listing.buildUIElements(SavedListingsActivity.this,
+                        metrics,
+                        listingsCollection,
+                        lastViewID,
+                        AzureDatabaseManager.getInstance(SavedListingsActivity.this));
 
                     // alternate bg color
                     if (color)

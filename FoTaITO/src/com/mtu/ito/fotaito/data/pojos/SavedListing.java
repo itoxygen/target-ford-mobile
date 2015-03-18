@@ -43,7 +43,7 @@ public class SavedListing implements Serializable {
     private final WeeklyAdListing _listing;
     private final String _storeId;
 
-    private final AzureDatabaseManager db;
+    private AzureDatabaseManager db;
 
     // UI vars for saved listing page
 
@@ -53,7 +53,7 @@ public class SavedListing implements Serializable {
 
     private DisplayMetrics metrics;     // information regarding screen size
     private SavedListingsActivity sla;  // Reference used for View creation
-    private List<SavedListing> listingsCollection;  // container for all instatiated objects
+    private List<SavedListing> listingsCollection;  // container for all instantiated objects
 
     public RelativeLayout parentLayout;
     public RelativeLayout.LayoutParams parentLayoutParams;
@@ -66,8 +66,6 @@ public class SavedListing implements Serializable {
         _message = message;
         _listing = listing;
         _storeId = store.getStoreId();
-
-        db = AzureDatabaseManager.getInstance(sla);
     }
 
     public SavedListing(final String id, final String message,
@@ -77,8 +75,6 @@ public class SavedListing implements Serializable {
         _listing = listing;
         _storeId = storeId;
 
-        db = AzureDatabaseManager.getInstance(sla);
-
     }
 
     /**
@@ -87,10 +83,12 @@ public class SavedListing implements Serializable {
     public int buildUIElements(SavedListingsActivity sla,
                                 DisplayMetrics metrics,
                                 List<SavedListing> listingsCollection,
-                                int lastViewID) {
+                                int lastViewID,
+                                AzureDatabaseManager db) {
         this.metrics = metrics;
         this.sla = sla;
         this.listingsCollection = listingsCollection;
+        this.db = db;
 
         marginBottom = (int) (metrics.density * 10f + 0.5f);
         marginTop = (int) (metrics.density * 10f + 0.5f);
@@ -188,37 +186,66 @@ public class SavedListing implements Serializable {
         trash.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // set confirm text and change image
-                TextView prodDes = (TextView) expandableLayout.findViewById(R.id.textViewProdDes);
-                prodDes.setText("really delete?");
-
-                trash.setImageResource(R.drawable.listing_action_accept);
-                trash.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v2) {
-                        Log.d(TAG, "confirmed delete");
-                        List<SavedListing> delList = new ArrayList<>();
-                        delList.add(SavedListing.this);
-                        db.deleteSavedListings(delList);
-                        sla.buildListings();
-                    }
-                });
-
-                final ImageButton map = (ImageButton) expandableLayout.findViewById(R.id.imageButtonMap);
-                map.setImageResource(R.drawable.listing_action_cancel);
-                map.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v2) {
-                        Log.d(TAG, "cancelled delete");
-                        // TODO somehow return back to normal.
-                        // just recalling ExpandableLayout doesn't work
-                    }
-                });
+                setExpandableToDelete();
             }
         });
 
 
         parentLayout.addView(expandableLayout, rlp);
+    }
+
+    private void setExpandableToDelete() {
+        // set confirm text and change image
+        TextView prodDes = (TextView) expandableLayout.findViewById(R.id.textViewProdDes);
+        prodDes.setText("really delete?");
+
+        final ImageButton trash = (ImageButton) expandableLayout.findViewById(R.id.imageButtonTrash);
+        trash.setImageResource(R.drawable.listing_action_accept);
+        trash.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v2) {
+                Log.d(TAG, "confirmed delete");
+                List<SavedListing> delList = new ArrayList<>();
+                delList.add(SavedListing.this);
+//                        db.deleteSavedListings(delList);
+                sla.buildListings();
+            }
+        });
+
+        final ImageButton map = (ImageButton) expandableLayout.findViewById(R.id.imageButtonMap);
+        map.setImageResource(R.drawable.listing_action_cancel);
+        map.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v2) {
+                Log.d(TAG, "cancelled delete");
+                cancelDelete();
+            }
+        });
+    }
+
+    private void cancelDelete() {
+        // set confirm text and change image
+        TextView prodDes = (TextView) expandableLayout.findViewById(R.id.textViewProdDes);
+        prodDes.setText("$prod_desc");
+
+        final ImageButton trash = (ImageButton) expandableLayout.findViewById(R.id.imageButtonTrash);
+        trash.setImageResource(R.drawable.listing_action_discard);
+        trash.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v2) {
+                setExpandableToDelete();
+            }
+        });
+
+        final ImageButton map = (ImageButton) expandableLayout.findViewById(R.id.imageButtonMap);
+        map.setImageResource(R.drawable.listing_action_map);
+        map.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v2) {
+                Log.d(TAG, "goto map");
+                // TODO go to map
+            }
+        });
     }
 
     /**

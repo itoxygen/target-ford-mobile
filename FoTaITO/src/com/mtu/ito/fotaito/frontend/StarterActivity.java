@@ -5,12 +5,15 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.ViewConfiguration;
 import android.widget.Button;
 import android.widget.Toast;
 import com.microsoft.windowsazure.mobileservices.authentication.MobileServiceAuthenticationProvider;
 import com.mtu.ito.fotaito.R;
 import com.mtu.ito.fotaito.data.AzureDatabaseManager;
 import com.mtu.ito.fotaito.backend.Car;
+
+import java.lang.reflect.Field;
 
 /**
  * Target Ford Mobile Team
@@ -30,6 +33,9 @@ public class StarterActivity extends Activity {
     @Override
     public void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        // force overflow button
+        forceOverflow();
 
         Car newCar = new Car();
         newCar.getAmbientTemperature();
@@ -136,5 +142,18 @@ public class StarterActivity extends Activity {
         final Intent intent = new Intent(this, WelcomeActivity.class);
         intent.putExtras(getIntent()); // Forward extras to MainActivity
         startActivityForResult(intent, 0, null);
+    }
+
+    private void forceOverflow() {
+        try {
+            ViewConfiguration config = ViewConfiguration.get(this);
+            Field menuKeyField = ViewConfiguration.class.getDeclaredField("sHasPermanentMenuKey");
+            if(menuKeyField != null) {
+                menuKeyField.setAccessible(true);
+                menuKeyField.setBoolean(config, false);
+            }
+        } catch (Exception ex) {
+            // Ignore
+        }
     }
 }

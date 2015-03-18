@@ -78,17 +78,38 @@
           <file leaf-file-name="SavedListing.java" pinned="false" current="true" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/src/com/mtu/ito/fotaito/data/pojos/SavedListing.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="0.44333333" vertical-offset="546" max-vertical-offset="5730">
-                  <caret line="63" column="38" selection-start-line="63" selection-start-column="38" selection-end-line="63" selection-end-column="38" />
+                <state vertical-scroll-proportion="0.53023756" vertical-offset="2764" max-vertical-offset="6135">
+                  <caret line="220" column="31" selection-start-line="220" selection-start-column="31" selection-end-line="220" selection-end-column="31" />
                   <folding>
                     <element signature="imports" expanded="true" />
-                    <element signature="e#6572#8006#0" expanded="true" />
-                    <element signature="e#6984#7419#0" expanded="true" />
-                    <element signature="e#7400#7401#0" expanded="true" />
-                    <element signature="e#7640#7980#0" expanded="true" />
-                    <element signature="e#7961#7962#0" expanded="true" />
-                    <element signature="e#7995#7996#0" expanded="true" />
+                    <element signature="e#6540#6697#0" expanded="true" />
+                    <element signature="e#6686#6687#0" expanded="true" />
+                    <element signature="e#7186#7559#0" expanded="true" />
+                    <element signature="e#7548#7549#0" expanded="true" />
+                    <element signature="e#7756#7953#0" expanded="true" />
+                    <element signature="e#7942#7943#0" expanded="true" />
+                    <element signature="e#8375#8533#0" expanded="true" />
+                    <element signature="e#8522#8523#0" expanded="true" />
+                    <element signature="e#8727#8918#0" expanded="true" />
+                    <element signature="e#8907#8908#0" expanded="true" />
                   </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="listing_action_discard.png" pinned="false" current="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/res/drawable/listing_action_discard.png">
+              <provider selected="true" editor-type-id="images">
+                <state />
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="SavedListingsActivity.java" pinned="false" current="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/src/com/mtu/ito/fotaito/frontend/SavedListingsActivity.java">
+              <provider selected="true" editor-type-id="text-editor">
+                <state vertical-scroll-proportion="0.0" vertical-offset="664" max-vertical-offset="1650">
+                  <caret line="94" column="44" selection-start-line="94" selection-start-column="44" selection-end-line="94" selection-end-column="44" />
+                  <folding />
                 </state>
               </provider>
             </entry>
@@ -97,76 +118,11 @@
       </split-first>
       <split-second>
         <leaf>
-          <file leaf-file-name="saved_listings_activity.xml" pinned="false" current="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/res/layout/saved_listings_activity.xml">
-              <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="-3.8888888" vertical-offset="0" max-vertical-offset="2895">
-                  <caret line="7" column="40" selection-start-line="7" selection-start-column="40" selection-end-line="7" selection-end-column="40" />
-                  <folding />
-                </state>
-              </provider>
-              <provider editor-type-id="android-designer">
-                <state />
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="SavedListingsActivity.java" pinned="false" current="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/src/com/mtu/ito/fotaito/frontend/SavedListingsActivity.java">
-              <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="0.4211663" vertical-offset="195" max-vertical-offset="1590">
-                  <caret line="50" column="38" selection-start-line="50" selection-start-column="38" selection-end-line="50" selection-end-column="38" />
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="ProductFragment.java" pinned="false" current="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/com/mtu/ito/fotaito/frontend/ProductFragment.java">
-              <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="-23.653847" vertical-offset="2280" max-vertical-offset="3360">
-                  <caret line="196" column="66" selection-start-line="196" selection-start-column="66" selection-end-line="196" selection-end-column="66" />
-                  <folding>
-                    <element signature="imports" expanded="true" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="OfferActivity.java" pinned="false" current="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/com/mtu/ito/fotaito/frontend/OfferActivity.java">
-              <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="915">
-                  <caret line="48" column="17" selection-start-line="48" selection-start-column="17" selection-end-line="48" selection-end-column="17" />
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="StarterActivity.java" pinned="false" current="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/com/mtu/ito/fotaito/frontend/StarterActivity.java">
-              <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="-5.1923075" vertical-offset="240" max-vertical-offset="1770">
-                  <caret line="35" column="0" selection-start-line="35" selection-start-column="0" selection-end-line="35" selection-end-column="0" />
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="AzureDatabaseManager.java" pinned="false" current="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/com/mtu/ito/fotaito/data/AzureDatabaseManager.java">
-              <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="-31.73077" vertical-offset="1500" max-vertical-offset="6285">
-                  <caret line="181" column="0" selection-start-line="181" selection-start-column="0" selection-end-line="181" selection-end-column="0" />
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="expandable_listing.xml" pinned="false" current="false" current-in-tab="false">
+          <file leaf-file-name="expandable_listing.xml" pinned="false" current="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/res/layout/expandable_listing.xml">
               <provider editor-type-id="text-editor">
                 <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="570">
-                  <caret line="21" column="67" selection-start-line="21" selection-start-column="67" selection-end-line="21" selection-end-column="67" />
+                  <caret line="10" column="53" selection-start-line="10" selection-start-column="31" selection-end-line="10" selection-end-column="53" />
                   <folding />
                 </state>
               </provider>
@@ -223,7 +179,6 @@
         <option value="$PROJECT_DIR$/src/com/mtu/ito/fotaito/frontend/MultiselectListFragment.java" />
         <option value="$PROJECT_DIR$/src/com/mtu/ito/fotaito/frontend/SandboxActivity.java" />
         <option value="$PROJECT_DIR$/src/com/mtu/ito/fotaito/frontend/SettingsActivity.java" />
-        <option value="$PROJECT_DIR$/src/com/mtu/ito/fotaito/frontend/StarterActivity.java" />
         <option value="$PROJECT_DIR$/src/com/mtu/ito/fotaito/frontend/WelcomeActivity.java" />
         <option value="$USER_HOME$/Downloads/openxc-android-6.0.6/openxc/src/com/openxc/VehicleManager.java" />
         <option value="$USER_HOME$/Downloads/openxc-android-6.0.6/enabler/src/com/openxc/enabler/OpenXcEnablerActivity.java" />
@@ -239,6 +194,7 @@
         <option value="$PROJECT_DIR$/AndroidManifest.xml" />
         <option value="$PROJECT_DIR$/res/layout/expandable_listing.xml" />
         <option value="$PROJECT_DIR$/res/layout/saved_listings_activity.xml" />
+        <option value="$PROJECT_DIR$/src/com/mtu/ito/fotaito/frontend/StarterActivity.java" />
         <option value="$PROJECT_DIR$/src/com/mtu/ito/fotaito/frontend/SavedListingsActivity.java" />
         <option value="$PROJECT_DIR$/src/com/mtu/ito/fotaito/data/pojos/SavedListing.java" />
       </list>
@@ -504,7 +460,7 @@
     <property name="OverrideImplement.combined" value="true" />
     <property name="OverrideImplement.overriding.sorted" value="false" />
     <property name="restartRequiresConfirmation" value="true" />
-    <property name="ANDROID_EXTENDED_DEVICE_CHOOSER_SERIALS" value="emulator-5554" />
+    <property name="ANDROID_EXTENDED_DEVICE_CHOOSER_SERIALS" value="" />
     <property name="ANDROID_EXTENDED_DEVICE_CHOOSER_AVD" value="Nexus_5_API_21_x86" />
     <property name="UI_DESIGNER_EDITOR_MODE.UIDesignerToolWindowManager2.WIDTH" value="282" />
     <property name="show.migrate.to.gradle.popup" value="false" />
@@ -875,33 +831,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/res/drawable/multiselect_list_item_checked.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.073913045" vertical-offset="0" max-vertical-offset="690">
-          <caret line="3" column="36" selection-start-line="3" selection-start-column="36" selection-end-line="3" selection-end-column="36" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/res/layout/multi_select_item.xml">
-      <provider editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="37" max-vertical-offset="940">
-          <caret line="25" column="43" selection-start-line="25" selection-start-column="43" selection-end-line="25" selection-end-column="43" />
-        </state>
-      </provider>
-      <provider selected="true" editor-type-id="android-designer">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/res/layout/settings_fragment.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="102" max-vertical-offset="833">
-          <caret line="6" column="25" selection-start-line="6" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
-        </state>
-      </provider>
-      <provider editor-type-id="android-designer">
-        <state />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/res/values/strings.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="119" max-vertical-offset="357">
@@ -1149,28 +1078,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/res/layout/expandable_listing.xml">
-      <provider editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="570">
-          <caret line="21" column="67" selection-start-line="21" selection-start-column="67" selection-end-line="21" selection-end-column="67" />
-          <folding />
-        </state>
-      </provider>
-      <provider selected="true" editor-type-id="android-designer">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/res/layout/saved_listings_activity.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-3.8888888" vertical-offset="0" max-vertical-offset="2895">
-          <caret line="7" column="40" selection-start-line="7" selection-start-column="40" selection-end-line="7" selection-end-column="40" />
-          <folding />
-        </state>
-      </provider>
-      <provider editor-type-id="android-designer">
-        <state />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/mtu/ito/fotaito/frontend/SandboxActivity.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1140">
@@ -1181,16 +1088,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/mtu/ito/fotaito/data/AzureDatabaseManager.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-31.73077" vertical-offset="1500" max-vertical-offset="6285">
+        <state vertical-scroll-proportion="0.7955641" vertical-offset="1500" max-vertical-offset="6285">
           <caret line="181" column="0" selection-start-line="181" selection-start-column="0" selection-end-line="181" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/mtu/ito/fotaito/frontend/StarterActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-5.1923075" vertical-offset="240" max-vertical-offset="1770">
-          <caret line="35" column="0" selection-start-line="35" selection-start-column="0" selection-end-line="35" selection-end-column="0" />
           <folding />
         </state>
       </provider>
@@ -1207,7 +1106,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/mtu/ito/fotaito/frontend/ProductFragment.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-23.653847" vertical-offset="2280" max-vertical-offset="3360">
+        <state vertical-scroll-proportion="0.5857143" vertical-offset="2280" max-vertical-offset="3360">
           <caret line="196" column="66" selection-start-line="196" selection-start-column="66" selection-end-line="196" selection-end-column="66" />
           <folding>
             <element signature="imports" expanded="true" />
@@ -1217,32 +1116,87 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/mtu/ito/fotaito/frontend/OfferActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="915">
+        <state vertical-scroll-proportion="0.5018587" vertical-offset="0" max-vertical-offset="1076">
           <caret line="48" column="17" selection-start-line="48" selection-start-column="17" selection-end-line="48" selection-end-column="17" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/mtu/ito/fotaito/frontend/SavedListingsActivity.java">
+    <entry file="file://$PROJECT_DIR$/src/com/mtu/ito/fotaito/frontend/StarterActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.4211663" vertical-offset="195" max-vertical-offset="1590">
-          <caret line="50" column="38" selection-start-line="50" selection-start-column="38" selection-end-line="50" selection-end-column="38" />
+        <state vertical-scroll-proportion="0.40190476" vertical-offset="763" max-vertical-offset="2010">
+          <caret line="107" column="25" selection-start-line="107" selection-start-column="25" selection-end-line="107" selection-end-column="25" />
           <folding />
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/res/layout/saved_listings_activity.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.10009533" vertical-offset="0" max-vertical-offset="2895">
+          <caret line="7" column="40" selection-start-line="7" selection-start-column="40" selection-end-line="7" selection-end-column="40" />
+          <folding />
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/res/layout/base_offer_view.xml">
+      <provider editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="465">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+      <provider selected="true" editor-type-id="android-designer">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/res/layout/expandable_listing.xml">
+      <provider editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="570">
+          <caret line="10" column="53" selection-start-line="10" selection-start-column="31" selection-end-line="10" selection-end-column="53" />
+          <folding />
+        </state>
+      </provider>
+      <provider selected="true" editor-type-id="android-designer">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/mtu/ito/fotaito/frontend/SavedListingsActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="664" max-vertical-offset="1650">
+          <caret line="94" column="44" selection-start-line="94" selection-start-column="44" selection-end-line="94" selection-end-column="44" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/res/drawable/listing_action_discard1.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/res/drawable/listing_action_discard.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/mtu/ito/fotaito/data/pojos/SavedListing.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.44333333" vertical-offset="546" max-vertical-offset="5730">
-          <caret line="63" column="38" selection-start-line="63" selection-start-column="38" selection-end-line="63" selection-end-column="38" />
+        <state vertical-scroll-proportion="0.53023756" vertical-offset="2764" max-vertical-offset="6135">
+          <caret line="220" column="31" selection-start-line="220" selection-start-column="31" selection-end-line="220" selection-end-column="31" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#6572#8006#0" expanded="true" />
-            <element signature="e#6984#7419#0" expanded="true" />
-            <element signature="e#7400#7401#0" expanded="true" />
-            <element signature="e#7640#7980#0" expanded="true" />
-            <element signature="e#7961#7962#0" expanded="true" />
-            <element signature="e#7995#7996#0" expanded="true" />
+            <element signature="e#6540#6697#0" expanded="true" />
+            <element signature="e#6686#6687#0" expanded="true" />
+            <element signature="e#7186#7559#0" expanded="true" />
+            <element signature="e#7548#7549#0" expanded="true" />
+            <element signature="e#7756#7953#0" expanded="true" />
+            <element signature="e#7942#7943#0" expanded="true" />
+            <element signature="e#8375#8533#0" expanded="true" />
+            <element signature="e#8522#8523#0" expanded="true" />
+            <element signature="e#8727#8918#0" expanded="true" />
+            <element signature="e#8907#8908#0" expanded="true" />
           </folding>
         </state>
       </provider>
