@@ -1,33 +1,15 @@
 package com.mtu.ito.fotaito.frontend;
 
-import android.app.ActionBar;
-import android.app.Activity;
-import android.content.Intent;
-import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.util.Log;
-import android.view.Gravity;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
-import android.view.View;
-import android.view.ViewGroup;
-import android.view.animation.AlphaAnimation;
-import android.view.animation.Animation;
-import android.view.animation.Transformation;
-import android.widget.Button;
-import android.widget.ImageButton;
-import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.mtu.ito.fotaito.R;
 import com.mtu.ito.fotaito.data.AzureDatabaseManager;
 import com.mtu.ito.fotaito.data.pojos.SavedListing;
-
-import org.apache.http.client.utils.CloneUtils;
 
 import java.util.List;
 
@@ -64,6 +46,12 @@ public class SavedListingsActivity extends MyActivity {
      * Get listings from db manager and create a layout for each
      */
     public void buildListings() {
+
+        // ensure that page is cleared
+        // this is needed when a listing is deleted and the page gets rebuilt
+        RelativeLayout rl = (RelativeLayout) findViewById(R.id.layout_saved_listings);
+        rl.removeAllViewsInLayout();
+
         List<SavedListing> listingsTable = null;
 
         Log.d(TAG, "getting saved listings");

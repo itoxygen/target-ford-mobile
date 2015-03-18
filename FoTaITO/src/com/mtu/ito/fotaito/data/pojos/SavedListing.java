@@ -1,21 +1,29 @@
 package com.mtu.ito.fotaito.data.pojos;
 
+import android.content.res.TypedArray;
 import android.graphics.Color;
+import android.graphics.drawable.Drawable;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
 import android.view.animation.Transformation;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.mtu.ito.fotaito.R;
+import com.mtu.ito.fotaito.data.AzureDatabaseManager;
+import com.mtu.ito.fotaito.frontend.OfferActivity;
+import com.mtu.ito.fotaito.frontend.ProductFragment;
 import com.mtu.ito.fotaito.frontend.SavedListingsActivity;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
@@ -35,20 +43,22 @@ public class SavedListing implements Serializable {
     private final WeeklyAdListing _listing;
     private final String _storeId;
 
+    private final AzureDatabaseManager db;
+
     // UI vars for saved listing page
 
     private int marginTop;      // top margin of 1st listing
     private int marginBottom;   // spacing between each listing
     private int blockHeight;    // height of each individual block
 
-    DisplayMetrics metrics;     // information regarding screen size
-    SavedListingsActivity sla;  // Reference used for View creation
-    List<SavedListing> listingsCollection;  // container for all instatiated objects
+    private DisplayMetrics metrics;     // information regarding screen size
+    private SavedListingsActivity sla;  // Reference used for View creation
+    private List<SavedListing> listingsCollection;  // container for all instatiated objects
 
     public RelativeLayout parentLayout;
     public RelativeLayout.LayoutParams parentLayoutParams;
-    RelativeLayout topLayout;
-    RelativeLayout expandableLayout;
+    private RelativeLayout topLayout;
+    private RelativeLayout expandableLayout;
 
     public SavedListing(final String message, final WeeklyAdListing listing,
             final TargetStore store) {
@@ -56,6 +66,8 @@ public class SavedListing implements Serializable {
         _message = message;
         _listing = listing;
         _storeId = store.getStoreId();
+
+        db = AzureDatabaseManager.getInstance(sla);
     }
 
     public SavedListing(final String id, final String message,
@@ -64,6 +76,9 @@ public class SavedListing implements Serializable {
         _message = message;
         _listing = listing;
         _storeId = storeId;
+
+        db = AzureDatabaseManager.getInstance(sla);
+
     }
 
     /**
@@ -84,7 +99,7 @@ public class SavedListing implements Serializable {
         createParentLayout();
         createParentLayoutParams();
         createTopLayout();
-        createExpandableLayout();
+        createExpandableLayout2();
 
         setParentTopMargin(lastViewID);
         return parentLayout.getId();
@@ -94,7 +109,7 @@ public class SavedListing implements Serializable {
      * Parent Layout holds the background color and contains the Layouts for top and expandable
      * sections.
      */
-    public void createParentLayout() {
+    private void createParentLayout() {
         parentLayout = new RelativeLayout(sla);
 
         // set click listener for the box
@@ -128,7 +143,7 @@ public class SavedListing implements Serializable {
      * Create the parent layout parameters.
      * Separated to keep logic in different containers
      */
-    public void createParentLayoutParams() {
+    private void createParentLayoutParams() {
         parentLayoutParams = new RelativeLayout.LayoutParams(
                 RelativeLayout.LayoutParams.MATCH_PARENT,
                 RelativeLayout.LayoutParams.WRAP_CONTENT);
@@ -139,7 +154,7 @@ public class SavedListing implements Serializable {
     /**
      * Top Layout is always present, contains listing title and dropdown indicator
      */
-    public void createTopLayout() {
+    private void createTopLayout() {
         topLayout = new RelativeLayout(sla);
 
         // dimensions: w -> fill, h -> blockHeight
@@ -160,20 +175,77 @@ public class SavedListing implements Serializable {
     /**
      * Only visible when clicked. Contains detailed information and option buttons
      */
-    public void createExpandableLayout() {
-        expandableLayout = new RelativeLayout(sla);
+    private void createExpandableLayout2() {
+        expandableLayout = (RelativeLayout) LayoutInflater.from(sla.getApplicationContext()).inflate(R.layout.expandable_listing, null);
 
         // dimensions: w -> fill, h -> initially 0, to be expanded on click
         RelativeLayout.LayoutParams rlp = new RelativeLayout.LayoutParams(
                 RelativeLayout.LayoutParams.MATCH_PARENT,
                 0);
-
         rlp.addRule(RelativeLayout.BELOW, topLayout.getId());
 
-        // TODO: Add options & details
+        final ImageButton trash = (ImageButton) expandableLayout.findViewById(R.id.imageButtonTrash);
+        trash.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // set confirm text and change image
+                TextView prodDes = (TextView) expandableLayout.findViewById(R.id.textViewProdDes);
+                prodDes.setText("really delete?");
 
-        // add to parent
+                trash.setImageResource(R.drawable.listing_action_accept);
+                trash.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v2) {
+                        Log.d(TAG, "confirmed delete");
+                        List<SavedListing> delList = new ArrayList<>();
+                        delList.add(SavedListing.this);
+                        db.deleteSavedListings(delList);
+                        sla.buildListings();
+                    }
+                });
+
+                final ImageButton map = (ImageButton) expandableLayout.findViewById(R.id.imageButtonMap);
+                map.setImageResource(R.drawable.listing_action_cancel);
+                map.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v2) {
+                        Log.d(TAG, "cancelled delete");
+                        // TODO somehow return back to normal.
+                        // just recalling ExpandableLayout doesn't work
+                    }
+                });
+            }
+        });
+
+
         parentLayout.addView(expandableLayout, rlp);
+    }
+
+    /**
+     * Create an ImageView to be used in listings page
+     *abc
+     * @return imageview with proper settings
+     */
+    private ImageButton createGenericImageButton(int align) {
+        ImageButton newButton = new ImageButton(sla);
+
+        // layout parameters
+        RelativeLayout.LayoutParams lp = new RelativeLayout.LayoutParams(
+                RelativeLayout.LayoutParams.WRAP_CONTENT,
+                RelativeLayout.LayoutParams.WRAP_CONTENT);
+        lp.addRule(align);
+        lp.addRule(RelativeLayout.CENTER_VERTICAL);
+        lp.rightMargin = (int) (metrics.density * -10f + 0.5f);
+        newButton.setLayoutParams(lp);
+
+        // set transparent background
+        int[] attrs = new int[] { R.attr.selectableItemBackground };
+        TypedArray ta = sla.obtainStyledAttributes(attrs);
+        Drawable drawableFromTheme = ta.getDrawable(0);
+        ta.recycle();
+        newButton.setBackground(drawableFromTheme);
+
+        return newButton;
     }
 
     /**
@@ -184,7 +256,7 @@ public class SavedListing implements Serializable {
      *
      * @param viewID - ID of layout that will be above current layout
      */
-    public void setParentTopMargin(int viewID) {
+    private void setParentTopMargin(int viewID) {
         if (viewID == 0)
             parentLayoutParams.topMargin = marginTop;
         else
@@ -201,7 +273,7 @@ public class SavedListing implements Serializable {
      * @param v - view to be expanded
      * @param newHeight - final height of expanded block
      */
-    public void expand(final View v, final int newHeight) {
+    private void expand(final View v, final int newHeight) {
         Log.d(TAG, "expanding to " + newHeight);
 
         Animation a = new Animation()
@@ -218,7 +290,7 @@ public class SavedListing implements Serializable {
             }
         };
 
-        a.setDuration((int)(newHeight / v.getContext().getResources().getDisplayMetrics().density)*2);
+        a.setDuration((int) (newHeight / v.getContext().getResources().getDisplayMetrics().density) * 2);
 
         // start animation and refresh screens
         v.startAnimation(a);
@@ -226,7 +298,7 @@ public class SavedListing implements Serializable {
         parent.invalidate();
     }
 
-    public void collapse(final View v, final int newHeight) {
+    private void collapse(final View v, final int newHeight) {
         Log.d(TAG, "collapsing to " + newHeight);
 
         final int initialHeight = v.getLayoutParams().height;
@@ -256,7 +328,7 @@ public class SavedListing implements Serializable {
      *
      * @return a created TextView
      */
-    protected TextView createTextView(String text) {
+    private TextView createTextView(String text) {
 
         int textWidthLimit = (int) (metrics.density * 300f + 0.5f);
         TextView tv = new TextView(sla);
@@ -282,7 +354,7 @@ public class SavedListing implements Serializable {
      *
      * @return imageview with proper settings
      */
-    protected ImageView createGenericImageView() {
+    private ImageView createGenericImageView() {
         ImageView iv = new ImageView(sla);
 
         // button settings
