@@ -78,20 +78,22 @@
           <file leaf-file-name="SavedListing.java" pinned="false" current="true" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/src/com/mtu/ito/fotaito/data/pojos/SavedListing.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="0.53023756" vertical-offset="2764" max-vertical-offset="6135">
-                  <caret line="220" column="31" selection-start-line="220" selection-start-column="31" selection-end-line="220" selection-end-column="31" />
+                <state vertical-scroll-proportion="0.35205182" vertical-offset="2599" max-vertical-offset="6465">
+                  <caret line="198" column="29" selection-start-line="198" selection-start-column="29" selection-end-line="198" selection-end-column="29" />
                   <folding>
                     <element signature="imports" expanded="true" />
-                    <element signature="e#6540#6697#0" expanded="true" />
-                    <element signature="e#6686#6687#0" expanded="true" />
-                    <element signature="e#7186#7559#0" expanded="true" />
-                    <element signature="e#7548#7549#0" expanded="true" />
-                    <element signature="e#7756#7953#0" expanded="true" />
-                    <element signature="e#7942#7943#0" expanded="true" />
-                    <element signature="e#8375#8533#0" expanded="true" />
-                    <element signature="e#8522#8523#0" expanded="true" />
-                    <element signature="e#8727#8918#0" expanded="true" />
-                    <element signature="e#8907#8908#0" expanded="true" />
+                    <element signature="e#6595#6752#0" expanded="true" />
+                    <element signature="e#6741#6742#0" expanded="true" />
+                    <element signature="e#6885#7031#0" expanded="true" />
+                    <element signature="e#7020#7021#0" expanded="true" />
+                    <element signature="e#7520#7893#0" expanded="true" />
+                    <element signature="e#7882#7883#0" expanded="true" />
+                    <element signature="e#8090#8287#0" expanded="true" />
+                    <element signature="e#8276#8277#0" expanded="true" />
+                    <element signature="e#8709#8867#0" expanded="true" />
+                    <element signature="e#8856#8857#0" expanded="true" />
+                    <element signature="e#9061#9248#0" expanded="true" />
+                    <element signature="e#9237#9238#0" expanded="true" />
                   </folding>
                 </state>
               </provider>
@@ -1183,20 +1185,22 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/mtu/ito/fotaito/data/pojos/SavedListing.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.53023756" vertical-offset="2764" max-vertical-offset="6135">
-          <caret line="220" column="31" selection-start-line="220" selection-start-column="31" selection-end-line="220" selection-end-column="31" />
+        <state vertical-scroll-proportion="0.35205182" vertical-offset="2599" max-vertical-offset="6465">
+          <caret line="198" column="29" selection-start-line="198" selection-start-column="29" selection-end-line="198" selection-end-column="29" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#6540#6697#0" expanded="true" />
-            <element signature="e#6686#6687#0" expanded="true" />
-            <element signature="e#7186#7559#0" expanded="true" />
-            <element signature="e#7548#7549#0" expanded="true" />
-            <element signature="e#7756#7953#0" expanded="true" />
-            <element signature="e#7942#7943#0" expanded="true" />
-            <element signature="e#8375#8533#0" expanded="true" />
-            <element signature="e#8522#8523#0" expanded="true" />
-            <element signature="e#8727#8918#0" expanded="true" />
-            <element signature="e#8907#8908#0" expanded="true" />
+            <element signature="e#6595#6752#0" expanded="true" />
+            <element signature="e#6741#6742#0" expanded="true" />
+            <element signature="e#6885#7031#0" expanded="true" />
+            <element signature="e#7020#7021#0" expanded="true" />
+            <element signature="e#7520#7893#0" expanded="true" />
+            <element signature="e#7882#7883#0" expanded="true" />
+            <element signature="e#8090#8287#0" expanded="true" />
+            <element signature="e#8276#8277#0" expanded="true" />
+            <element signature="e#8709#8867#0" expanded="true" />
+            <element signature="e#8856#8857#0" expanded="true" />
+            <element signature="e#9061#9248#0" expanded="true" />
+            <element signature="e#9237#9238#0" expanded="true" />
           </folding>
         </state>
       </provider>

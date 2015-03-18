@@ -1,8 +1,10 @@
 package com.mtu.ito.fotaito.data.pojos;
 
+import android.content.Intent;
 import android.content.res.TypedArray;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
+import android.net.Uri;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.Gravity;
@@ -190,6 +192,14 @@ public class SavedListing implements Serializable {
             }
         });
 
+        final ImageButton map = (ImageButton) expandableLayout.findViewById(R.id.imageButtonMap);
+        map.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                launchMaps();
+            }
+        });
+
 
         parentLayout.addView(expandableLayout, rlp);
     }
@@ -243,9 +253,21 @@ public class SavedListing implements Serializable {
             @Override
             public void onClick(View v2) {
                 Log.d(TAG, "goto map");
-                // TODO go to map
+                launchMaps();
             }
         });
+    }
+
+    private void launchMaps() {
+        // create UI for location specification
+        Uri mapsIntentUri = Uri.parse("geo:47.1173798,-88.5646832?z=15");
+
+        // create intend and set maps app w/ options
+        Intent mapsIntent = new Intent(Intent.ACTION_VIEW, mapsIntentUri);
+        mapsIntent.setPackage("com.google.android.apps.maps");
+
+        // start maps!
+        sla.startActivity(mapsIntent);
     }
 
     /**
