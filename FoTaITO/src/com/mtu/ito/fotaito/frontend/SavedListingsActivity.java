@@ -85,26 +85,26 @@ public class SavedListingsActivity extends MyActivity {
                 int lastViewID = 0;         // holds a reference to the previous blocks id
 
                 // create a listing block for each item in the collection of listings
-                for (SavedListing listing : listingsCollection) {
+                    for (SavedListing listing : listingsCollection) {
 
-                    // initialize each listing block
-                    lastViewID = listing.buildUIElements(SavedListingsActivity.this,
-                        metrics,
-                        listingsCollection,
-                        lastViewID,
-                        AzureDatabaseManager.getInstance(SavedListingsActivity.this));
+                        // initialize each listing block
+                        lastViewID = listing.buildUIElements(SavedListingsActivity.this,
+                                metrics,
+                                listingsCollection,
+                                lastViewID,
+                                AzureDatabaseManager.getInstance(SavedListingsActivity.this));
 
-                    // alternate bg color
-                    if (color)
-                        listing.setParentColor("#c0392b");
-                    else
-                        listing.setParentColor("#696969");
-                    color = !color;
+                        // alternate bg color
+                        if (color)
+                            listing.setParentColor("#c0392b");
+                        else
+                            listing.setParentColor("#696969");
+                        color = !color;
 
-                    layout_listings.addView(listing.parentLayout, listing.parentLayoutParams);
+                        layout_listings.addView(listing.parentLayout, listing.parentLayoutParams);
 
-                }
-            }
+                    }
+               }
 
         };
 

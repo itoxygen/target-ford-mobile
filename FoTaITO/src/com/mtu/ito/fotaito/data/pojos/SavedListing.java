@@ -5,6 +5,7 @@ import android.content.res.TypedArray;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.Gravity;
@@ -26,6 +27,7 @@ import com.mtu.ito.fotaito.frontend.SavedListingsActivity;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.UUID;
 
@@ -61,6 +63,7 @@ public class SavedListing implements Serializable {
     public RelativeLayout.LayoutParams parentLayoutParams;
     private RelativeLayout topLayout;
     private RelativeLayout expandableLayout;
+    private int numberOfListings = 0;
 
     public SavedListing(final String message, final WeeklyAdListing listing,
             final TargetStore store) {
@@ -215,10 +218,16 @@ public class SavedListing implements Serializable {
             @Override
             public void onClick(View v2) {
                 Log.d(TAG, "confirmed delete");
-                List<SavedListing> delList = new ArrayList<>();
-                delList.add(SavedListing.this);
-//                        db.deleteSavedListings(delList);
-                sla.buildListings();
+              //  List<SavedListing> delList = new ArrayList<>();
+              //  delList.add(SavedListing.this);
+
+                deleteSavedListing();
+
+               if (listingsCollection.size() == 1)
+                    sla.recreate();
+               else
+                   sla.buildListings();
+
             }
         });
 
@@ -267,7 +276,17 @@ public class SavedListing implements Serializable {
         mapsIntent.setPackage("com.google.android.apps.maps");
 
         // start maps!
-        sla.startActivity(mapsIntent);
+
+        if (mapsIntent.resolveActivity(sla.getPackageManager()) != null) {
+            sla.startActivity(mapsIntent);
+        }
+
+
+
+
+
+
+
     }
 
     /**
@@ -435,6 +454,35 @@ public class SavedListing implements Serializable {
 
     public String getStoreId() {
         return _storeId;
+    }
+
+    private void deleteSavedListing() {
+
+        final AsyncTask<SavedListing, Void, Boolean> task = new AsyncTask<SavedListing, Void, Boolean>() {
+            @Override
+            protected Boolean doInBackground(final SavedListing... params) {
+                try {
+                    return db.deleteSavedListings(Arrays.asList(params));
+                } catch (Exception e) {
+                    Log.e(TAG, "Error while deleting listing.", e);
+                    return false;
+                }
+            }
+
+            @Override
+            protected void onPostExecute(final Boolean result) {
+                if (result) {
+                    boolean _isSaved = false;
+
+//                    if (_saveItem != null) {
+//                        _saveItem.setIcon(R.drawable.ic_action_not_important);
+//                    }
+                }
+
+            }
+        };
+
+        task.execute(SavedListing.this);
     }
 
 }
