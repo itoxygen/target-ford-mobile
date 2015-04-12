@@ -27,13 +27,45 @@ public class SettingsActivity extends MyActivity {
         setContentView(R.layout.settings_fragment);
 
         // register the button to redirect user to sandbox (testing) activity
-        final Button sandboxButton = (Button) findViewById(R.id.button_tosandbox);
-        sandboxButton.setOnClickListener(new View.OnClickListener() {
+//        final Button sandboxButton = (Button) findViewById(R.id.button_tosandbox);
+//        sandboxButton.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(final View v) {
+//                Intent intent = new Intent(getBaseContext(), SandboxActivity.class);
+//                startActivity(intent);
+//            }
+//        });
+
+        final Button updateButton = (Button) findViewById(R.id.button_foreceupdate);
+        updateButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(final View v) {
-                Intent intent = new Intent(getBaseContext(), SandboxActivity.class);
-                startActivity(intent);
+                updateValues();
             }
         });
+    }
+
+    private void updateValues() {
+        // vehicle status
+        Boolean resp = checkVehicleStatus();
+
+        if (resp) {
+
+        }
+
+        // target api
+
+        // mobile db
+
+        // closest store value
+
+        // vehicle speed
+
+        // wiper status
+
+    }
+
+    private Boolean checkVehicleStatus() {
+        return false;
     }
 }
