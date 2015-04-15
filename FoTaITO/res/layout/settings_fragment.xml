@@ -34,11 +34,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="connected"
-            android:textColor="@android:color/holo_green_light"
-            android:id="@+id/textView8"
+            android:text="not initialized"
+            android:id="@+id/textView_vstatus"
             android:layout_below="@+id/textView6"
-            android:layout_alignStart="@+id/textView10" />
+            android:layout_alignStart="@+id/textView_dbConnection" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -53,10 +52,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="connected"
-            android:textColor="@android:color/holo_green_light"
-            android:id="@+id/textView10"
-            android:layout_below="@+id/textView8"
+            android:text="not initialized"
+            android:id="@+id/textView_dbConnection"
+            android:layout_below="@+id/textView_vstatus"
             android:layout_toEndOf="@+id/textView16"
             android:layout_marginTop="23dp" />
 
@@ -73,11 +71,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="responsive"
-            android:textColor="@android:color/holo_green_light"
-            android:id="@+id/textView12"
-            android:layout_below="@+id/textView8"
-            android:layout_alignEnd="@+id/textView10" />
+            android:text="not initialized"
+            android:id="@+id/textView_targetStatus"
+            android:layout_alignTop="@+id/textView9"
+            android:layout_alignStart="@+id/textView_vstatus" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -102,11 +99,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="44.9833d"
-            android:textColor="@android:color/holo_green_light"
-            android:id="@+id/textView15"
+            android:text="N/A"
+            android:textColor="@android:color/holo_red_light"
+            android:id="@+id/textView_lat"
             android:layout_above="@+id/textView16"
-            android:layout_alignStart="@+id/textView12" />
+            android:layout_alignStart="@+id/textView_targetStatus" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -131,11 +128,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="54.2 mph"
-            android:textColor="@android:color/holo_green_light"
-            android:id="@+id/textView18"
+            android:text="N/A"
+            android:textColor="@android:color/holo_red_light"
+            android:id="@+id/textView_speed"
             android:layout_below="@+id/textView16"
-            android:layout_alignStart="@+id/textView15" />
+            android:layout_alignStart="@+id/textView_lat" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -150,11 +147,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="off"
-            android:textColor="@android:color/holo_green_light"
-            android:id="@+id/textView20"
+            android:text="N/A"
+            android:textColor="@android:color/holo_red_light"
+            android:id="@+id/textView_wiperStatus"
             android:layout_alignTop="@+id/textView19"
-            android:layout_alignStart="@+id/textView18" />
+            android:layout_alignStart="@+id/textView_speed" />
 
         <Button
             style="?android:attr/buttonStyleSmall"
@@ -162,18 +159,17 @@
             android:layout_height="wrap_content"
             android:text="force update"
             android:id="@+id/button_foreceupdate"
-            android:layout_below="@+id/textView20"
+            android:layout_below="@+id/textView_wiperStatus"
             android:layout_centerHorizontal="true" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="-93.2667d"
-            android:textColor="@android:color/holo_green_light"
-            android:id="@+id/textView21"
-            android:layout_below="@+id/textView15"
-            android:layout_alignStart="@+id/textView15" />
+            android:textColor="@android:color/holo_red_light"
+            android:id="@+id/textView_lng"
+            android:layout_below="@+id/textView_lat"
+            android:layout_alignStart="@+id/textView_lat" />
 
         <TextView
             android:layout_width="wrap_content"
