@@ -11,7 +11,9 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.mtu.ito.fotaito.R;
@@ -48,14 +50,14 @@ public class SettingsActivity extends MyActivity {
         updateValues();
 
         // register the button to redirect user to sandbox (testing) activity
-//        final Button sandboxButton = (Button) findViewById(R.id.button_tosandbox);
-//        sandboxButton.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(final View v) {
-//                Intent intent = new Intent(getBaseContext(), SandboxActivity.class);
-//                startActivity(intent);
-//            }
-//        });
+        final Button sandboxButton = (Button) findViewById(R.id.button_tosandbox);
+        sandboxButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(final View v) {
+                Intent intent = new Intent(getBaseContext(), SandboxActivity.class);
+                startActivity(intent);
+            }
+        });
 
         final Button updateButton = (Button) findViewById(R.id.button_foreceupdate);
         updateButton.setOnClickListener(new View.OnClickListener() {
@@ -65,6 +67,11 @@ public class SettingsActivity extends MyActivity {
                 updateValues();
             }
         });
+
+        Spinner sp = (Spinner) findViewById(R.id.spinner);
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.check_frequencies, android.R.layout.simple_spinner_item);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        sp.setAdapter(adapter);
     }
 
     private void updateValues() {

@@ -63,6 +63,7 @@ public class SavedListing implements Serializable {
     public RelativeLayout.LayoutParams parentLayoutParams;
     private RelativeLayout topLayout;
     private RelativeLayout expandableLayout;
+    private ImageView expandArrow;
     private int numberOfListings = 0;
 
     public SavedListing(final String message, final WeeklyAdListing listing,
@@ -122,8 +123,10 @@ public class SavedListing implements Serializable {
                 if (expandableLayout.getLayoutParams().height == 0) {
                     // only 1 block can be expanded at a time -> collapse rest
                     for (SavedListing l : listingsCollection) {
-                        if (l.expandableLayout.getLayoutParams().height > 0)
+                        if (l.expandableLayout.getLayoutParams().height > 0) {
                             collapse(l.expandableLayout, 0);
+                           l.expandArrow.setImageResource(R.drawable.ic_action_down);
+                        }
                     }
                     expand(expandableLayout, blockHeight);
                 } else
@@ -167,8 +170,8 @@ public class SavedListing implements Serializable {
 
         // add description and arrow
         topLayout.addView(createTextView(getListing().getTitle()));
-        topLayout.addView(createGenericImageView());
-
+        expandArrow = createGenericImageView();
+        topLayout.addView(expandArrow);
         topLayout.setId(View.generateViewId());
 
         // add to parent
@@ -203,13 +206,15 @@ public class SavedListing implements Serializable {
             }
         });
 
+        TextView price = (TextView) expandableLayout.findViewById(R.id.textView_ProdDes);
+        price.setText(_listing.getPrice());
 
         parentLayout.addView(expandableLayout, rlp);
     }
 
     private void setExpandableToDelete() {
         // set confirm text and change image
-        TextView prodDes = (TextView) expandableLayout.findViewById(R.id.textViewProdDes);
+        TextView prodDes = (TextView) expandableLayout.findViewById(R.id.textView_ProdDes);
         prodDes.setText("really delete?");
 
         final ImageButton trash = (ImageButton) expandableLayout.findViewById(R.id.imageButtonTrash);
@@ -244,8 +249,8 @@ public class SavedListing implements Serializable {
 
     private void cancelDelete() {
         // set confirm text and change image
-        TextView prodDes = (TextView) expandableLayout.findViewById(R.id.textViewProdDes);
-        prodDes.setText("$prod_desc");
+        TextView prodDes = (TextView) expandableLayout.findViewById(R.id.textView_ProdDes);
+        prodDes.setText(_listing.getPrice());
 
         final ImageButton trash = (ImageButton) expandableLayout.findViewById(R.id.imageButtonTrash);
         trash.setImageResource(R.drawable.listing_action_discard);
@@ -269,7 +274,7 @@ public class SavedListing implements Serializable {
 
     private void launchMaps() {
         // create UI for location specification
-        Uri mapsIntentUri = Uri.parse("geo:47.1173798,-88.5646832?z=15");
+        Uri mapsIntentUri = Uri.parse("geo:47.1173798,-88.5646832?z=15&q=47.1173798,-88.5646832(Target Stores)");
 
         // create intend and set maps app w/ options
         Intent mapsIntent = new Intent(Intent.ACTION_VIEW, mapsIntentUri);
@@ -280,12 +285,6 @@ public class SavedListing implements Serializable {
         if (mapsIntent.resolveActivity(sla.getPackageManager()) != null) {
             sla.startActivity(mapsIntent);
         }
-
-
-
-
-
-
 
     }
 
@@ -360,6 +359,9 @@ public class SavedListing implements Serializable {
 
         a.setDuration((int) (newHeight / v.getContext().getResources().getDisplayMetrics().density) * 2);
 
+        // flip arrow
+        expandArrow.setImageResource(R.drawable.ic_action_up);
+
         // start animation and refresh screens
         v.startAnimation(a);
         View parent =(View) v.getParent();
@@ -386,6 +388,9 @@ public class SavedListing implements Serializable {
         };
 
         a.setDuration((int)(initialHeight / v.getContext().getResources().getDisplayMetrics().density)*2);
+
+        expandArrow.setImageResource(R.drawable.ic_action_down);
+
         v.startAnimation(a);
         View parent = (View) v.getParent();
         parent.invalidate();
