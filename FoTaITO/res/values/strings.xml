@@ -12,4 +12,11 @@
     <b>\n\nEnjoy!</b>\nWe\'ll push you amazing Target offers at just the right time. It\'s like magic.
     </string>
 
+    <string-array name="check_frequencies">
+        <item>5 Minutes</item>
+        <item>15 Minutes</item>
+        <item>30 Minutes</item>
+        <item>1 Hour</item>
+    </string-array>
+
 </resources>

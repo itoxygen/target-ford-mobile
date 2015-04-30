@@ -27,7 +27,7 @@
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="$prod_desc"
-        android:id="@+id/textViewProdDes"
+        android:id="@+id/textView_ProdDes"
         android:layout_centerVertical="true"
         android:layout_centerHorizontal="true" />
 </RelativeLayout>

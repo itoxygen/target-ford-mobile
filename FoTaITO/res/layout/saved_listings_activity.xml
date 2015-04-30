@@ -10,6 +10,7 @@
         android:layout_height="wrap_content"
         android:id="@+id/layout_saved_listings"
         android:background="@drawable/saved_listings_background">
+
     <!--android:background="@drawable/background"-->
 
         <!--<TextView-->

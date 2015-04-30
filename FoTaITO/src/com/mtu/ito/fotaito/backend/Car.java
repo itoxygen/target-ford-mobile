@@ -13,8 +13,9 @@ import com.openxc.measurements.*;
  */
 public class Car extends Activity {
 
-    /* Car info */
+    private static Car instance = new Car();
 
+    /* Car info */
 
     private static final String TAG = "StarterActivity";
     private VehicleManager mVehicleManager;
@@ -34,11 +35,29 @@ public class Car extends Activity {
     private double speed;
     private double odometer;
 
-    /*
-    Location - where is the car currently
-     */
-    private double lat;
-    private double lng;
+
+    /* public vars */
+    public boolean connected;
+    public double lat;
+    public double lng;
+
+
+    /* Constructor */
+    public Car() {
+
+        connected = false;
+
+        // manually set coordinates to minneapolis for testing
+        lat = 44.9833d;
+        lng = -93.2667d;
+    }
+
+    public static synchronized Car getInstance() {
+        if (instance == null) {
+            instance = new Car();
+        }
+        return instance;
+    }
 
     /*
     * LISTENERS
@@ -139,6 +158,7 @@ public class Car extends Activity {
         public void onServiceConnected(ComponentName className,
                                        IBinder service) {
             Log.i(TAG, "Bound to VehicleManager");
+            connected = true;
 
             // When the VehicleManager starts up, we store a reference to it
             // here in "mVehicleManager" so we can call functions on it
@@ -164,7 +184,7 @@ public class Car extends Activity {
      * These values should never be set by anything but the car object
      * So they've been set to be private accessible only through these getters
      */
-    public boolean getWhiperFluidStatus() {
+    public boolean getWhiperStatus() {
         return whiperFluidStatus;
     }
 
