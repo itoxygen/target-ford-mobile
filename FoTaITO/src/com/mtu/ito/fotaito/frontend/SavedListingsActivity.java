@@ -95,10 +95,12 @@ public class SavedListingsActivity extends MyActivity {
                                 AzureDatabaseManager.getInstance(SavedListingsActivity.this));
 
                         // alternate bg color
-                        if (color)
-                            listing.setParentColor("#c0392b");
-                        else
-                            listing.setParentColor("#696969");
+                        if (color) {
+                            listing.setParentColor("#000000");
+                        }
+                        else {
+                            listing.setParentColor("#820202");
+                        }
                         color = !color;
 
                         layout_listings.addView(listing.parentLayout, listing.parentLayoutParams);

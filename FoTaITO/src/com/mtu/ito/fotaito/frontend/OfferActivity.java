@@ -57,8 +57,8 @@ public class OfferActivity extends MyActivity {
             final FragmentManager fragmentManager = getFragmentManager();
             fragmentManager.beginTransaction()
                     .replace(R.id.content_frame, f)
-                    .addToBackStack(null)
                     .commit();
+
 
         } else {
             Log.e(TAG, "Offer intent args = null");

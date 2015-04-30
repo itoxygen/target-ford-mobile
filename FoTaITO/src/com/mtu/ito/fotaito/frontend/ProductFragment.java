@@ -36,6 +36,7 @@ import java.util.Arrays;
  *
  */
 public class ProductFragment extends Fragment {
+
     private static final String TAG = ProductFragment.class.getSimpleName();
 
     // public keys used to pass extra arguments
