@@ -22,11 +22,11 @@
         </activity>
 
         <service android:name="com.openxc.VehicleManager"/>
-        <activity android:name=".frontend.SandboxActivity"/>
-        <activity android:name=".frontend.WelcomeActivity"/>
-        <activity android:name=".frontend.SettingsActivity"/>
-        <activity android:name=".frontend.SavedListingsActivity"/>
-        <activity android:name=".frontend.OfferActivity"/>
+        <activity android:name=".frontend.SandboxActivity" android:screenOrientation="portrait"/>
+        <activity android:name=".frontend.WelcomeActivity" android:screenOrientation="portrait"/>
+        <activity android:name=".frontend.SettingsActivity" android:screenOrientation="portrait"/>
+        <activity android:name=".frontend.SavedListingsActivity" android:screenOrientation="portrait"/>
+        <activity android:name=".frontend.OfferActivity" android:screenOrientation="portrait"/>
 
 
         <service android:name=".service.BluetoothService"/>

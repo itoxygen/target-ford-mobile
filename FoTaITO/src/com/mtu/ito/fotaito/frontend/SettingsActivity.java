@@ -2,6 +2,7 @@ package com.mtu.ito.fotaito.frontend;
 
 import android.app.ActionBar;
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -22,6 +23,7 @@ import com.mtu.ito.fotaito.data.AzureDatabaseManager;
 import com.mtu.ito.fotaito.data.TargetConnection;
 import com.mtu.ito.fotaito.data.pojos.TargetStore;
 import com.mtu.ito.fotaito.data.pojos.WeeklyAdListing;
+import com.openxc.VehicleManager;
 
 import org.w3c.dom.Text;
 
@@ -75,6 +77,11 @@ public class SettingsActivity extends MyActivity {
     }
 
     private void updateValues() {
+        // bind vehicle TESTING
+        Car car = Car.getInstance();
+        Intent intent = new Intent(this, VehicleManager.class);
+        bindService(intent, car.mConnection, Context.BIND_AUTO_CREATE);
+
         // vehicle status
         TextView vehicleStatus = (TextView) findViewById(R.id.textView_vstatus);
         if (checkVehicleStatus()) {
@@ -108,7 +115,7 @@ public class SettingsActivity extends MyActivity {
 
 
         // closest store value
-        Car car = Car.getInstance();
+//        Car car = Car.getInstance();
         TextView lat = (TextView) findViewById(R.id.textView_lat);
         TextView lng = (TextView) findViewById(R.id.textView_lng);
         lat.setText(Double.toString(car.lat));

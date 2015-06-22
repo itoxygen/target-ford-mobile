@@ -152,7 +152,7 @@ public class Car extends Activity {
     * OPENXC Management
     * */
 
-    private ServiceConnection mConnection = new ServiceConnection() {
+    public ServiceConnection mConnection = new ServiceConnection() {
         // Called when the connection with the VehicleManager service is
         // established, i.e. bound.
         public void onServiceConnected(ComponentName className,

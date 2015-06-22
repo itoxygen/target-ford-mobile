@@ -274,7 +274,7 @@ public class SavedListing implements Serializable {
 
     private void launchMaps() {
         // create UI for location specification
-        Uri mapsIntentUri = Uri.parse("geo:47.1173798,-88.5646832?z=15&q=47.1173798,-88.5646832(Target Stores)");
+        Uri mapsIntentUri = Uri.parse("geo:46.55121,-87.46046?z=15&q=Target Stores");
 
         // create intend and set maps app w/ options
         Intent mapsIntent = new Intent(Intent.ACTION_VIEW, mapsIntentUri);

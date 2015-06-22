@@ -27,7 +27,7 @@ public class EnergyDrinkScenario implements Scenario {
         for (TargetStore store : stores) {
             Log.d(TAG, "Querying store: " + store.getStoreSlug());
 
-            final List<WeeklyAdListing> listings = cnn.queryWeeklyAd(store, "energy drink");
+            final List<WeeklyAdListing> listings = cnn.queryWeeklyAd(store, "coca");
 
             if (!listings.isEmpty()) {
                 final WeeklyAdListing offer = listings.get(0);
