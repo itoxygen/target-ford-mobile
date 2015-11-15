@@ -12,4 +12,9 @@
         <item>"Settings"</item>
         <item>"Help"</item>
     </array>
+    <string name="help_setup_title">Setup</string>
+    <string name="help_setup_connect">Plug your OpenXC device into the OBDII port in your vehicle</string>
+    <string name="help_setup_check">Check your connection in the "Connection Status" tab</string>
+    <string name="help_setup_drive">Drive Away! We\'ll keep an eye on your status and push you offers</string>
+    <string name="help_device">Get your OpenXC Device</string>
 </resources>

@@ -26,6 +26,7 @@ public class ScenarioManager {
     public ScenarioManager(VehicleManager vehicle, TargetConnectionManager tgt) {
 
         this.vehicle = vehicle;
+        this.tgt = tgt;
 
         // create list of all implemented scenarios
         scenarios = new ArrayList<>();

@@ -6,9 +6,46 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    android:paddingBottom="@dimen/activity_vertical_margin">
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:elevation="5px">
 
-    <TextView android:text="help!" android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+    <TextView android:text="@string/help_setup_title" android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="30dp"
+        android:elevation="5px"
+        android:enabled="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/help_setup_connect"
+        android:id="@+id/textView2"
+        android:textSize="20dp"
+        android:paddingTop="20dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/help_setup_check"
+        android:id="@+id/textView3"
+        android:textSize="20dp"
+        android:paddingTop="20dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/help_setup_drive"
+        android:id="@+id/textView4"
+        android:textSize="20dp"
+        android:paddingTop="20dp"
+        android:paddingBottom="30dp" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/help_device"
+        android:id="@+id/button"
+        android:textSize="20dp"
+        android:elevation="5dp" />
 
 </LinearLayout>

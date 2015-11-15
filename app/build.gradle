@@ -31,4 +31,5 @@ dependencies {
     compile 'com.google.code.gson:gson:2.2.4'
     compile 'com.openxcplatform:library:6.1.6+'
     compile 'com.microsoft.azure:azure-mobile-services-android-sdk:2.0.3'
+    compile 'com.appyvet:materialrangebar:1.3'
 }

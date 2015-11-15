@@ -52,7 +52,8 @@ public class ScenarioService extends IntentService {
         // use scenario manager to check all scenarios and send notification if a match is found
         Scenario matchedScenario = scenarioManager.check();
 
-        sendNotification(matchedScenario.getMatchedProduct());
+        if (matchedScenario != null)
+            sendNotification(matchedScenario.getMatchedProduct());
 
     }
 
