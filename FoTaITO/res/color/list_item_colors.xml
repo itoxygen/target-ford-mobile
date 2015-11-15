@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<selector xmlns:android="http://schemas.android.com/apk/res/android" >
-	<color android:state_pressed="true" android:drawable="@color/selected" />
-	<color android:state_focused="true" android:drawable="@color/selected" />
-	<color android:state_selected="true" android:drawable="@color/checked" />
-    <color android:drawable="@color/translucent_white" />
-</selector>

@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">FoTaITOv2</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="action_settings">Settings</string>
+    
+    <array name="nav_titles">
+        <item>"Saved Items"</item>
+        <item>"Connection Status"</item>
+        <item>"Settings"</item>
+        <item>"Help"</item>
+    </array>
+</resources>

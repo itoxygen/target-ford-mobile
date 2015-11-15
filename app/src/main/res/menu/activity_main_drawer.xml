@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+        <item android:id="@+id/nav_saved_items" android:icon="@drawable/ic_menu_star"
+            android:title="Saved Items" />
+    </group>
+
+    <group android:checkableBehavior="single">
+        <item android:id="@+id/nav_connection_status" android:icon="@drawable/ic_menu_login"
+            android:title="Connection Status" />
+    </group>
+
+    <group android:checkableBehavior="single">
+        <item android:id="@+id/nav_settings" android:icon="@android:drawable/ic_menu_manage"
+            android:title="Settings" />
+    </group>
+
+    <group android:checkableBehavior="single">
+        <item android:id="@+id/nav_help" android:icon="@android:drawable/ic_menu_help"
+            android:title="Help" />
+    </group>
+
+</menu>
