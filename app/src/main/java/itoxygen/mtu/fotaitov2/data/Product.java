@@ -10,30 +10,42 @@ public class Product {
 
     private String title;
     private String text;
-    private String price;
-    private String image;
+    private String imageURL;
+    private String listingID;
 
+    public Product(String titleIn,String textIn, String imageIn, String listingID){
+        title = titleIn;
+        text = textIn;
+        imageURL = imageIn;
+    }
 
     public Product() {
-        title = "Simply 59-oz juice";
-        text = "simply-59-oz-juice-2032544139";
-        price = "2/$6";
-        image = "http://akimages.shoplocal.com/dyn_li/280.0.75.0/Retailers/Target/151129TEN_p30_31_p33_c_122804_20151129_PS.jpg";
+        title = "test-product";
+        text = "product-text";
+        imageURL = "";
+        listingID = "";
     }
 
     public String getTitle() {
         return title;
     }
 
+    public String getImageUrl() {return imageURL;}
+
     public String getText() {
         return text;
     }
 
-    public String getPrice() {
-        return price;
-    }
-    public String getImage() {
-        return image;
-    }
+    public void setText(String in2Text) {text = in2Text;}
+
+    public void setTitle(String in2Title) {title = in2Title;}
+
+    public String getListingID() {return listingID;}
+
+    public void setListingID(String listIn) {listingID=listIn;}
+
+    public void setImageUrl(String inURL){imageURL = inURL;}
+
+
 
 }
