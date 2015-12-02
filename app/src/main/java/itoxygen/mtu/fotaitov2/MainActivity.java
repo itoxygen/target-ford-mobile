@@ -15,6 +15,8 @@ import android.view.MenuItem;
 import com.microsoft.windowsazure.mobileservices.*;
 import com.microsoft.windowsazure.mobileservices.http.ServiceFilterResponse;
 import com.microsoft.windowsazure.mobileservices.table.TableOperationCallback;
+import com.nostra13.universalimageloader.core.ImageLoader;
+import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 
 import java.net.MalformedURLException;
 
@@ -53,12 +55,18 @@ public class MainActivity extends AppCompatActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        // init image loader
+        // Create global configuration and initialize ImageLoader with this config
+        ImageLoaderConfiguration config = new ImageLoaderConfiguration.Builder(this).build();
+        ImageLoader.getInstance().init(config);
+
         // create and populate the side drawer
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.setDrawerListener(toggle);
         toggle.syncState();
+
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
@@ -81,6 +89,9 @@ public class MainActivity extends AppCompatActivity
         } else {
             // set default page to SavedItemsFragment
             launchFragment(new SavedItemsFragment());
+            setTitle(getResources().getStringArray(R.array.nav_titles)[0]);
+            NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+            navigationView.getMenu().getItem(0).setChecked(true);
         }
     }
 
@@ -105,7 +116,7 @@ public class MainActivity extends AppCompatActivity
 
         // Find fragment to display
         int id = item.getItemId();
-        if (id == R.id.nav_saved_items) {
+        if (id == R.id.nav_previous_offers) {
             frag = new SavedItemsFragment();
             navTitle = navTitles[0];
         } else if (id == R.id.nav_connection_status) {

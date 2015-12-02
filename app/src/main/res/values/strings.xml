@@ -7,7 +7,7 @@
     <string name="action_settings">Settings</string>
     
     <array name="nav_titles">
-        <item>"Saved Items"</item>
+        <item>"Previous Offers"</item>
         <item>"Connection Status"</item>
         <item>"Settings"</item>
         <item>"Help"</item>

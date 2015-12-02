@@ -10,10 +10,15 @@ public class Product {
 
     private String title;
     private String text;
+    private String price;
+    private String image;
+
 
     public Product() {
-        title = "test-product";
-        text = "product-text";
+        title = "Simply 59-oz juice";
+        text = "simply-59-oz-juice-2032544139";
+        price = "2/$6";
+        image = "http://akimages.shoplocal.com/dyn_li/280.0.75.0/Retailers/Target/151129TEN_p30_31_p33_c_122804_20151129_PS.jpg";
     }
 
     public String getTitle() {
@@ -23,4 +28,12 @@ public class Product {
     public String getText() {
         return text;
     }
+
+    public String getPrice() {
+        return price;
+    }
+    public String getImage() {
+        return image;
+    }
+
 }

@@ -19,4 +19,5 @@ public class VehicleManager {
     public double getOutsideTemperature() {
         return outsideTemperature;
     }
+
 }

@@ -2,8 +2,8 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <group android:checkableBehavior="single">
-        <item android:id="@+id/nav_saved_items" android:icon="@drawable/ic_menu_star"
-            android:title="Saved Items" />
+        <item android:id="@+id/nav_previous_offers" android:icon="@drawable/ic_menu_star"
+            android:title="Previous Offers" />
     </group>
 
     <group android:checkableBehavior="single">

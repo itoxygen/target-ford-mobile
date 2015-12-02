@@ -2,32 +2,18 @@
 <items version="2" >
 
     <item
-        jar="/Users/keagan/Library/Android/sdk/extras/android/m2repository/com/android/support/support-annotations/23.1.0/support-annotations-23.1.0.jar"
+        jar="/Users/keagan/Documents/github/target-ford-mobile/app/build/intermediates/exploded-aar/com.android.support/recyclerview-v7/23.1.0/jars/classes.jar"
         jumboMode="false"
         revision="23.0.1"
-        sha1="92e3fc113ec3ee36b64603a38857b95700025633">
-        <dex dex="/Users/keagan/Documents/github/target-ford-mobile/app/build/intermediates/pre-dexed/debug/support-annotations-23.1.0-75e6029819545a3e5dff1a2b0e5cfa59e8157455.jar" />
+        sha1="3f151e49c316a5ab2c065969a3b3b55ef9b393fc">
+        <dex dex="/Users/keagan/Documents/github/target-ford-mobile/app/build/intermediates/pre-dexed/debug/classes-4080ab194129c4d0ebf6fcef8f1c0662d407075a.jar" />
     </item>
     <item
-        jar="/Users/keagan/Documents/github/target-ford-mobile/app/build/intermediates/exploded-aar/com.android.support/support-v4/23.1.0/jars/libs/internal_impl-23.1.0.jar"
+        jar="/Users/keagan/Documents/github/target-ford-mobile/app/build/intermediates/exploded-aar/com.android.support/cardview-v7/21.0.3/jars/classes.jar"
         jumboMode="false"
         revision="23.0.1"
-        sha1="8716243bf04bae8d6c9ca94d27b9a9be7236f0a3">
-        <dex dex="/Users/keagan/Documents/github/target-ford-mobile/app/build/intermediates/pre-dexed/debug/internal_impl-23.1.0-ea5cb96c488025549deaa8512757cef800e49e04.jar" />
-    </item>
-    <item
-        jar="/Users/keagan/Documents/github/target-ford-mobile/app/build/intermediates/exploded-aar/com.appyvet/materialrangebar/1.3/jars/classes.jar"
-        jumboMode="false"
-        revision="23.0.1"
-        sha1="8eb551963af29c7faacd640a4e74a8e9e698ab90">
-        <dex dex="/Users/keagan/Documents/github/target-ford-mobile/app/build/intermediates/pre-dexed/debug/classes-7040dd1eee9b1f57ec5aba97ecf1c51d32f293b8.jar" />
-    </item>
-    <item
-        jar="/Users/keagan/Documents/github/target-ford-mobile/app/build/intermediates/exploded-aar/com.android.support/support-v4/23.1.0/jars/classes.jar"
-        jumboMode="false"
-        revision="23.0.1"
-        sha1="ddde541c289c8b816a8f8fd6c325d80788c522a6">
-        <dex dex="/Users/keagan/Documents/github/target-ford-mobile/app/build/intermediates/pre-dexed/debug/classes-74c68c906a662cc2e2a6e87e0b6f966ef5e30fe2.jar" />
+        sha1="00b0b7233e1ec64acebfac40d4983d32d4712426">
+        <dex dex="/Users/keagan/Documents/github/target-ford-mobile/app/build/intermediates/pre-dexed/debug/classes-453660773b8436ddeaa3d313a6bfce6cc715ac1f.jar" />
     </item>
 
 </items>
