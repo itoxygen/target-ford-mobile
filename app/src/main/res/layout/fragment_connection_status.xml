@@ -17,4 +17,16 @@
         android:text="run service"
         android:id="@+id/button_run_service" />
 
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="update"
+        android:id="@+id/button_connection_update_engine" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Engine Status"
+        android:id="@+id/text_engine_status" />
+
 </LinearLayout>

@@ -42,8 +42,10 @@ public class ScenarioService extends IntentService {
     protected void onHandleIntent(Intent intent) {
         Log.d(TAG, "ScenarioService starting");
 
+        Log.d(TAG, "ScenarioService reports engine speed: " + MainActivity.openXCManager.getEngineStatus());
+
         // create vehicle object from openXC library and Target API connection manager
-        VehicleManager veh = new VehicleManager();
+        OpenXCManager veh = new OpenXCManager();
         TargetConnectionManager tgt = new TargetConnectionManager();
 
         // create scenario manager object and pass it vehicle

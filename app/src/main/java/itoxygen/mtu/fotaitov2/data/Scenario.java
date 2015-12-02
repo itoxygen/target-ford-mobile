@@ -1,7 +1,7 @@
 package itoxygen.mtu.fotaitov2.data;
 
+import itoxygen.mtu.fotaitov2.backend.OpenXCManager;
 import itoxygen.mtu.fotaitov2.backend.TargetConnectionManager;
-import itoxygen.mtu.fotaitov2.backend.VehicleManager;
 
 /**
  * Abstract scenario class defines what each scenario must include
@@ -11,10 +11,10 @@ import itoxygen.mtu.fotaitov2.backend.VehicleManager;
 public abstract class Scenario {
 
     protected Product matchedProduct;
-    protected VehicleManager vehicle;
+    protected OpenXCManager vehicle;
     protected TargetConnectionManager tgt;
 
-    public Scenario(VehicleManager vehicle, TargetConnectionManager tgt) {
+    public Scenario(OpenXCManager vehicle, TargetConnectionManager tgt) {
         this.vehicle = vehicle;
         this.tgt = tgt;
     }

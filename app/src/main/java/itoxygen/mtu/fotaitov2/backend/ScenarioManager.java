@@ -14,7 +14,7 @@ import itoxygen.mtu.fotaitov2.data.scenarios.HotWeatherScenario;
  */
 public class ScenarioManager {
 
-    private VehicleManager vehicle;
+    private OpenXCManager vehicle;
     private TargetConnectionManager tgt;
     private ArrayList<Scenario> scenarios;
 
@@ -23,7 +23,7 @@ public class ScenarioManager {
      *
       * @param vehicle reference to vehicle - must be passed to each scenario.
      */
-    public ScenarioManager(VehicleManager vehicle, TargetConnectionManager tgt) {
+    public ScenarioManager(OpenXCManager vehicle, TargetConnectionManager tgt) {
 
         this.vehicle = vehicle;
         this.tgt = tgt;

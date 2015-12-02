@@ -1,7 +1,7 @@
 package itoxygen.mtu.fotaitov2.data.scenarios;
 
+import itoxygen.mtu.fotaitov2.backend.OpenXCManager;
 import itoxygen.mtu.fotaitov2.backend.TargetConnectionManager;
-import itoxygen.mtu.fotaitov2.backend.VehicleManager;
 import itoxygen.mtu.fotaitov2.data.Product;
 import itoxygen.mtu.fotaitov2.data.Scenario;
 
@@ -12,15 +12,15 @@ import itoxygen.mtu.fotaitov2.data.Scenario;
  */
 public class HotWeatherScenario extends Scenario {
 
-    public HotWeatherScenario(VehicleManager vehicle, TargetConnectionManager tgt) {
+    public HotWeatherScenario(OpenXCManager vehicle, TargetConnectionManager tgt) {
         super(vehicle, tgt);
     }
 
     @Override
     protected boolean checkVehicle() {
-        if (vehicle.getOutsideTemperature() > 87.0)
-            return true;
-        return false;
+//        if (vehicle.getOutsideTemperature() > 87.0)
+//            return true;
+        return true;
     }
 
     @Override

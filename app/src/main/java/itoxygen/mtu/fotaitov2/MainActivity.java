@@ -2,7 +2,6 @@ package itoxygen.mtu.fotaitov2;
 
 import android.app.Fragment;
 import android.app.FragmentManager;
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -10,16 +9,12 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.MenuItem;
-import com.microsoft.windowsazure.mobileservices.*;
-import com.microsoft.windowsazure.mobileservices.http.ServiceFilterResponse;
-import com.microsoft.windowsazure.mobileservices.table.TableOperationCallback;
+
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 
-import java.net.MalformedURLException;
-
+import itoxygen.mtu.fotaitov2.backend.OpenXCManager;
 import itoxygen.mtu.fotaitov2.fragments.ConnectionStatusFragment;
 import itoxygen.mtu.fotaitov2.fragments.HelpFragment;
 import itoxygen.mtu.fotaitov2.fragments.ProductFragment;
@@ -38,15 +33,11 @@ public class MainActivity extends AppCompatActivity
 
     private static final String TAG = "MainActivity";
 
-    private MobileServiceClient client;
+    // static ford manager.
+    // not the best way to implement, but this class needs to be accessed from pretty
+    // much everywhere and for now this will have to do.
+    public static OpenXCManager openXCManager;
 
-    // TEST ITEM
-    // TODO remove me
-    public class Item {
-        public String Id;
-        public String text;
-    }
-    public Item testItem;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,16 +58,24 @@ public class MainActivity extends AppCompatActivity
         drawer.setDrawerListener(toggle);
         toggle.syncState();
 
-
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
-
 
         // set default fragment to either savedlisting or product page depending on how app was
         // launched
         setInitialFragment(getIntent().getStringExtra("launchType"));
 
+        // Initialize OpenXC connection
+        openXCManager = new OpenXCManager();
+        openXCManager.init(this);
+        openXCManager.bind();
     }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+    }
+
 
     /**
      * Determine if activity was launched from a notification and redirect to proper fragment
@@ -152,5 +151,6 @@ public class MainActivity extends AppCompatActivity
         FragmentManager fragManager = getFragmentManager();
         fragManager.beginTransaction().replace(R.id.frame_container, frag).commit();
     }
+
 
 }

@@ -4,6 +4,7 @@ import android.app.Fragment;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,6 +21,8 @@ import itoxygen.mtu.fotaitov2.data.Product;
  */
 public class SavedItemsFragment extends Fragment {
 
+    private static final String TAG = "SavedItemsFragment";
+
     private RecyclerView mRecyclerView;
     private RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
@@ -28,6 +31,8 @@ public class SavedItemsFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+
+        Log.d(TAG, "Inflating SavedItemsFragment");
 
         View rootView = inflater.inflate(R.layout.fragment_saved_items, container, false);
 
