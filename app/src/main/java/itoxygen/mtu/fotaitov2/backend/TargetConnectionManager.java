@@ -235,6 +235,7 @@ public class TargetConnectionManager {
         //Things for the request
         String urlEndpoint = "http://api.target.com/v1/promotions/weeklyad/";
         URL url;
+        String desc = "";
         String title = "";
         String image ="";
         String listingID = "";

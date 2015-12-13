@@ -9,34 +9,33 @@ package itoxygen.mtu.fotaitov2.data;
 public class Product {
 
     private String title;
-    private String text;
     private String imageURL;
     private String listingID;
+    private String price;
 
-    public Product(String titleIn,String textIn, String imageIn, String listingID){
+    public Product(String titleIn,String priceIn, String imageIn, String listingIDin){
         title = titleIn;
-        text = textIn;
         imageURL = imageIn;
+        price = priceIn;
+        listingID = listingIDin;
     }
 
     public Product() {
         title = "test-product";
-        text = "product-text";
+        price = "";
         imageURL = "";
         listingID = "";
     }
+
+    public void setPrice(String in){price = in;}
+
+    public String getPrice(){return price;}
 
     public String getTitle() {
         return title;
     }
 
     public String getImageUrl() {return imageURL;}
-
-    public String getText() {
-        return text;
-    }
-
-    public void setText(String in2Text) {text = in2Text;}
 
     public void setTitle(String in2Title) {title = in2Title;}
 
